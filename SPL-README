@@ -12,33 +12,32 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.   
-
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   
 NOTE:
 	These sources are highly modified to co-relate with Scpel
 	by Phrunsys Emmasson. Thus hereby acertain that these, and most
 	of Scpel toolchain is built and inspired around GNU Compiler
 	Collections. So the GNU Toolchain covers most of the documentation,
 	portability, and architectures.
-	
-		1)	Please: I highly recomend that you (Good Fellow) should merily
-			navigate and review the folder $(src)/LICENCES as it 
-			contains most of that good stuff that now all devine tech-humanity
-			stands for.
-		2)	This specific implementation strongly supports only Scpel
-			which inturn only covers (GNU C, GNU C++) Scpel, which then
-			adds specific Artificial intelligence related concepts in GCC.
-		3)	This file (SPL-README) is here because I've always found it
-			more humble having all implementation unrelated text out of 
-			sourcefiles thus keeping them more precise.
-		4)	For Scpel related documentation and implementation details
+		1)	This specific implementation strongly supports only Scpel
+			which in turn only covers (GNU C, GNU C++) Scpel, which then
+			adds specific artificial intelligence related concepts in GCC.
+		2)	This file (SPL-README) is here because I've always found it
+			humble to have all the implementation unrelated text separated out of 
+			the source files thus keeping them precise.
+		3)	For Scpel related documentation and implementation guidelines;
 			please visit https://www.scpel.org.
-		5)	This is one of my humble works (the least). Scpel Aims at targeting
-			Artificial intelligence at the ** Lowest**  level as possible
+		4)	This is one of my humble works. Scpel aims at targeting
+			artificial intelligence on the ** lowest**  level possible
 			and so high at the application level using C++'s STL
+		5)	Please Note: I highly recommend that you should merrily
+			navigate to and review the folder $(src)/LICENCES because it 
+			contains most of the good stuff that all divine tech-humanity
+			stands for.
 			
 			
-Yours Trully:
+Yours Truly:
 	~ Emmasson 
 	  Africa-Uganda-Kampala
 	  phrunsys.scpel.256.ug@gmail.com 
