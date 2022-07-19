@@ -1,24 +1,5 @@
 /* windres.h -- header file for windres program.
-   Copyright (C) 1997-2022 Free Software Foundation, Inc.
-   Written by Ian Lance Taylor, Cygnus Support.
-   Rewritten by Kai Tietz, Onevision.
-
-   This file is part of GNU Binutils.
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA
-   02110-1301, USA.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #include "ansidecl.h"
 
@@ -39,8 +20,7 @@ extern void write_rc_file (const char *, const rc_res_directory *);
 extern void write_res_file (const char *, const rc_res_directory *);
 extern void write_coff_file (const char *, const char *, const rc_res_directory *);
 
-extern rc_res_resource *bin_to_res (windres_bfd *, rc_res_id, const bfd_byte *,
-				    rc_uint_type);
+extern rc_res_resource *bin_to_res (windres_bfd *, rc_res_id, const bfd_byte *, rc_uint_type);
 extern rc_uint_type res_to_bin (windres_bfd *, rc_uint_type, const rc_res_resource *);
 
 extern FILE *open_file_search (const char *, const char *, const char *, char **);
@@ -58,10 +38,8 @@ extern void res_unistring_to_id (rc_res_id *, const unichar *);
 
 /* Manipulation of the resource tree.  */
 
-extern rc_res_resource *define_resource (rc_res_directory **, int, const rc_res_id *,
-					 int);
-extern rc_res_resource *define_standard_resource (rc_res_directory **, int, rc_res_id,
-						  rc_uint_type, int);
+extern rc_res_resource *define_resource (rc_res_directory **, int, const rc_res_id *, int);
+extern rc_res_resource *define_standard_resource (rc_res_directory **, int, rc_res_id, rc_uint_type, int);
 
 extern int extended_dialog (const rc_dialog *);
 extern int extended_menu (const rc_menu *);

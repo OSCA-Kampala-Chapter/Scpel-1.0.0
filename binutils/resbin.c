@@ -1,25 +1,5 @@
 /* resbin.c -- manipulate the Windows binary resource format.
-   Copyright (C) 1997-2022 Free Software Foundation, Inc.
-   Written by Ian Lance Taylor, Cygnus Support.
-   Rewritten by Kai Tietz, Onevision.
-
-   This file is part of GNU Binutils.
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA
-   02110-1301, USA.  */
-
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 /* This file contains functions to convert between the binary resource
    format and the internal structures that we want to use.  The same
@@ -37,14 +17,11 @@ static void toosmall (const char *);
 
 static unichar *get_unicode (windres_bfd *, const bfd_byte *, rc_uint_type, rc_uint_type *);
 static int get_resid (windres_bfd *, rc_res_id *, const bfd_byte *, rc_uint_type);
-static rc_res_resource *bin_to_res_generic (windres_bfd *, enum rc_res_type,
-					    const bfd_byte *, rc_uint_type);
+static rc_res_resource *bin_to_res_generic (windres_bfd *, enum rc_res_type, const bfd_byte *, rc_uint_type);
 static rc_res_resource *bin_to_res_cursor (windres_bfd *, const bfd_byte *, rc_uint_type);
 static rc_res_resource *bin_to_res_menu (windres_bfd *,const bfd_byte *, rc_uint_type);
-static rc_menuitem *bin_to_res_menuitems (windres_bfd *, const bfd_byte *, rc_uint_type,
-					  rc_uint_type *);
-static rc_menuitem *bin_to_res_menuexitems (windres_bfd *, const bfd_byte *, rc_uint_type,
-					    rc_uint_type *);
+static rc_menuitem *bin_to_res_menuitems (windres_bfd *, const bfd_byte *, rc_uint_type, rc_uint_type *);
+static rc_menuitem *bin_to_res_menuexitems (windres_bfd *, const bfd_byte *, rc_uint_type, rc_uint_type *);
 static rc_res_resource *bin_to_res_dialog (windres_bfd *, const bfd_byte *, rc_uint_type);
 static rc_res_resource *bin_to_res_string (windres_bfd *,const bfd_byte *, rc_uint_type);
 static rc_res_resource *bin_to_res_fontdir (windres_bfd *, const bfd_byte *, rc_uint_type);
@@ -56,8 +33,7 @@ static rc_res_resource *bin_to_res_version (windres_bfd *, const bfd_byte *, rc_
 static rc_res_resource *bin_to_res_userdata (windres_bfd *, const bfd_byte *, rc_uint_type);
 static rc_res_resource *bin_to_res_toolbar (windres_bfd *, const bfd_byte *, rc_uint_type);
 static void get_version_header (windres_bfd *, const bfd_byte *, rc_uint_type, const char *,
-				unichar **, rc_uint_type *, rc_uint_type *, rc_uint_type *,
-				rc_uint_type *);
+				unichar **, rc_uint_type *, rc_uint_type *, rc_uint_type *, rc_uint_type *);
 
 /* Given a resource type ID, a pointer to data, a length, return a
    rc_res_resource structure which represents that resource.  The caller
