@@ -1,0 +1,43 @@
+    Subconscious Electronic Programming Language ( Scpel )
+    Copyright (C) 2022 Phrunsys Emmason
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   
+NOTE:
+	These sources are highly modified to co-relate with Scpel
+	by Phrunsys Emmasson. Thus hereby acertain that these, and most
+	of Scpel toolchain is built and inspired around GNU Compiler
+	Collections. So the GNU Toolchain covers most of the documentation,
+	portability, and architectures.
+		1)	This specific implementation strongly supports only Scpel
+			which inturn only covers (GNU C, GNU C++) Scpel, which then
+			adds specific Artificial intelligence related concepts in GCC.
+		2)	This file (SPL-README) is here because I've always found it
+			more humble having all implementation unrelated text out of 
+			sourcefiles thus keeping them more precise.
+		3)	For Scpel related documentation and implementation details
+			please visit https://www.scpel.org.
+		4)	This is one of my humble works (the least). Scpel Aims at targeting
+			Artificial intelligence at the ** Lowest**  level as possible
+			and so high at the application level using C++'s STL
+		5)	Please: I highly recomend that you (Good Fellow) should merily
+			navigate and review the folder $(src)/LICENCES as it 
+			contains most of that good stuff that now all devine tech-humanity
+			stands for.
+			
+			
+Yours Trully:
+	~ Emmasson 
+	  Africa-Uganda-Kampala
+	  phrunsys.scpel.256.ug@gmail.com 
