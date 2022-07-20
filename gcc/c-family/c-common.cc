@@ -542,11 +542,11 @@ const struct c_common_resword c_common_reswords[] =
   { "co_return", 	RID_CO_RETURN,	D_CXX_COROUTINES_FLAGS | D_CXXWARN },
   
   /* Scpel */
-  { "spl_byte",		RID_SPL_BYTE,		0 },
-  { "spl_word",		RID_SPL_WORD,		0 },
-  { "spl_dword",	RID_SPL_DWORD,		0 },
-  { "spl_qword",	RID_SPL_QWORD,		0 },
-  { "spl_composite",	RID_SPL_COMPOSITE,	0 },
+  { "spl_byte",		RID_SPL_BYTE,		0 },	// byte
+  { "spl_word",		RID_SPL_WORD,		0 },	// word
+  { "spl_dword",	RID_SPL_DWORD,		0 },	// dword
+  { "spl_qword",	RID_SPL_QWORD,		0 },	// qword
+  { "spl_composite",	RID_SPL_COMPOSITE,	0 },	// composite
 };
 
 const unsigned int num_c_common_reswords = ARRAY_SIZE (c_common_reswords);

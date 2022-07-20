@@ -128,9 +128,9 @@ host_triplet = @host@
 target_triplet = @target@
 @NEED_CTF_QSORT_R_TRUE@am__append_1 = ctf-qsort_r.c
 @TCL_TRY_TRUE@am__append_2 = site.exp development.exp
-@BUILD_INFO_TRUE@am__append_3 = doc/ctf-spec.texi
+@BUILD_INFO_TRUE@am__append_3 =
 @BUILD_INFO_TRUE@am__append_4 = texput.log
-@BUILD_INFO_TRUE@am__append_5 = doc/ctf-spec.info
+@BUILD_INFO_TRUE@am__append_5 =
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/../bfd/acinclude.m4 \
@@ -306,12 +306,12 @@ am__v_texidevnull_ = $(am__v_texidevnull_@AM_DEFAULT_V@)
 am__v_texidevnull_0 = > /dev/null
 am__v_texidevnull_1 = 
 am__dirstamp = $(am__leading_dot)dirstamp
-INFO_DEPS = doc/ctf-spec.info
+INFO_DEPS =
 am__TEXINFO_TEX_DIR = $(srcdir)
-DVIS = doc/ctf-spec.dvi
-PDFS = doc/ctf-spec.pdf
-PSS = doc/ctf-spec.ps
-HTMLS = doc/ctf-spec.html
+DVIS =
+PDFS =
+PSS =
+HTMLS =
 TEXINFOS = $(am__append_3)
 TEXI2DVI = texi2dvi
 TEXI2PDF = $(TEXI2DVI) --pdf --batch
@@ -350,7 +350,7 @@ AM_RECURSIVE_TARGETS = cscope
 DEJATOOL = $(PACKAGE)
 RUNTESTDEFAULTFLAGS = --tool $$tool --srcdir $$srcdir
 am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
-	$(srcdir)/doc/local.mk $(top_srcdir)/../ar-lib \
+	$(top_srcdir)/../ar-lib \
 	$(top_srcdir)/../compile $(top_srcdir)/../config.guess \
 	$(top_srcdir)/../config.sub $(top_srcdir)/../depcomp \
 	$(top_srcdir)/../install-sh $(top_srcdir)/../ltmain.sh \
@@ -478,7 +478,7 @@ builddir = @builddir@
 c_warn = @c_warn@
 datadir = @datadir@
 datarootdir = @datarootdir@
-docdir = @docdir@
+docdir =
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
 host = @host@
@@ -588,7 +588,7 @@ all: config.h
 .SUFFIXES: .c .dvi .lo .o .obj .ps
 am--refresh: Makefile
 	@:
-$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(srcdir)/doc/local.mk $(am__configure_deps)
+$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
 	    *$$dep*) \
@@ -610,7 +610,6 @@ Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	    echo ' cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)'; \
 	    cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe);; \
 	esac;
-$(srcdir)/doc/local.mk $(am__empty):
 
 $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
@@ -1020,136 +1019,22 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
-doc/$(am__dirstamp):
-	@$(MKDIR_P) doc
-	@: > doc/$(am__dirstamp)
-
-@BUILD_INFO_TRUE@doc/ctf-spec.info: doc/ctf-spec.texi 
-@BUILD_INFO_TRUE@	@test -f doc/$(am__dirstamp) || $(MAKE) $(AM_MAKEFLAGS) doc/$(am__dirstamp)
-@BUILD_INFO_TRUE@	$(AM_V_MAKEINFO)restore=: && backupdir="$(am__leading_dot)am$$$$" && \
-@BUILD_INFO_TRUE@	rm -rf $$backupdir && mkdir $$backupdir && \
-@BUILD_INFO_TRUE@	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
-@BUILD_INFO_TRUE@	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
-@BUILD_INFO_TRUE@	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
-@BUILD_INFO_TRUE@	  done; \
-@BUILD_INFO_TRUE@	else :; fi && \
-@BUILD_INFO_TRUE@	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc \
-@BUILD_INFO_TRUE@	 -o $@ `test -f 'doc/ctf-spec.texi' || echo '$(srcdir)/'`doc/ctf-spec.texi; \
-@BUILD_INFO_TRUE@	then \
-@BUILD_INFO_TRUE@	  rc=0; \
-@BUILD_INFO_TRUE@	else \
-@BUILD_INFO_TRUE@	  rc=$$?; \
-@BUILD_INFO_TRUE@	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
-@BUILD_INFO_TRUE@	fi; \
-@BUILD_INFO_TRUE@	rm -rf $$backupdir; exit $$rc
-
-doc/ctf-spec.dvi: doc/ctf-spec.texi  doc/$(am__dirstamp)
-	$(AM_V_TEXI2DVI)TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
-	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc' \
-	$(TEXI2DVI) $(AM_V_texinfo) --build-dir=$(@:.dvi=.t2d) -o $@ $(AM_V_texidevnull) \
-	`test -f 'doc/ctf-spec.texi' || echo '$(srcdir)/'`doc/ctf-spec.texi
-
-doc/ctf-spec.pdf: doc/ctf-spec.texi  doc/$(am__dirstamp)
-	$(AM_V_TEXI2PDF)TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
-	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc' \
-	$(TEXI2PDF) $(AM_V_texinfo) --build-dir=$(@:.pdf=.t2p) -o $@ $(AM_V_texidevnull) \
-	`test -f 'doc/ctf-spec.texi' || echo '$(srcdir)/'`doc/ctf-spec.texi
-
-doc/ctf-spec.html: doc/ctf-spec.texi  doc/$(am__dirstamp)
-	$(AM_V_MAKEINFO)rm -rf $(@:.html=.htp)
-	$(AM_V_at)if $(MAKEINFOHTML) $(AM_MAKEINFOHTMLFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc \
-	 -o $(@:.html=.htp) `test -f 'doc/ctf-spec.texi' || echo '$(srcdir)/'`doc/ctf-spec.texi; \
-	then \
-	  rm -rf $@ && mv $(@:.html=.htp) $@; \
-	else \
-	  rm -rf $(@:.html=.htp); exit 1; \
-	fi
-.dvi.ps:
-	$(AM_V_DVIPS)TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
-	$(DVIPS) $(AM_V_texinfo) -o $@ $<
-
+	
 uninstall-dvi-am:
-	@$(NORMAL_UNINSTALL)
-	@list='$(DVIS)'; test -n "$(dvidir)" || list=; \
-	for p in $$list; do \
-	  $(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(dvidir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(dvidir)/$$f"; \
-	done
 
 uninstall-html-am:
-	@$(NORMAL_UNINSTALL)
-	@list='$(HTMLS)'; test -n "$(htmldir)" || list=; \
-	for p in $$list; do \
-	  $(am__strip_dir) \
-	  echo " rm -rf '$(DESTDIR)$(htmldir)/$$f'"; \
-	  rm -rf "$(DESTDIR)$(htmldir)/$$f"; \
-	done
 
 uninstall-info-am:
-	@$(PRE_UNINSTALL)
-	@if test -d '$(DESTDIR)$(infodir)' && $(am__can_run_installinfo); then \
-	  list='$(INFO_DEPS)'; \
-	  for file in $$list; do \
-	    relfile=`echo "$$file" | sed 's|^.*/||'`; \
-	    echo " install-info --info-dir='$(DESTDIR)$(infodir)' --remove '$(DESTDIR)$(infodir)/$$relfile'"; \
-	    if install-info --info-dir="$(DESTDIR)$(infodir)" --remove "$(DESTDIR)$(infodir)/$$relfile"; \
-	    then :; else test ! -f "$(DESTDIR)$(infodir)/$$relfile" || exit 1; fi; \
-	  done; \
-	else :; fi
-	@$(NORMAL_UNINSTALL)
-	@list='$(INFO_DEPS)'; \
-	for file in $$list; do \
-	  relfile=`echo "$$file" | sed 's|^.*/||'`; \
-	  relfile_i=`echo "$$relfile" | sed 's|\.info$$||;s|$$|.i|'`; \
-	  (if test -d "$(DESTDIR)$(infodir)" && cd "$(DESTDIR)$(infodir)"; then \
-	     echo " cd '$(DESTDIR)$(infodir)' && rm -f $$relfile $$relfile-[0-9] $$relfile-[0-9][0-9] $$relfile_i[0-9] $$relfile_i[0-9][0-9]"; \
-	     rm -f $$relfile $$relfile-[0-9] $$relfile-[0-9][0-9] $$relfile_i[0-9] $$relfile_i[0-9][0-9]; \
-	   else :; fi); \
-	done
 
 uninstall-pdf-am:
-	@$(NORMAL_UNINSTALL)
-	@list='$(PDFS)'; test -n "$(pdfdir)" || list=; \
-	for p in $$list; do \
-	  $(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(pdfdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(pdfdir)/$$f"; \
-	done
 
 uninstall-ps-am:
-	@$(NORMAL_UNINSTALL)
-	@list='$(PSS)'; test -n "$(psdir)" || list=; \
-	for p in $$list; do \
-	  $(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(psdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(psdir)/$$f"; \
-	done
 
-dist-info: $(INFO_DEPS)
-	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
-	list='$(INFO_DEPS)'; \
-	for base in $$list; do \
-	  case $$base in \
-	    $(srcdir)/*) base=`echo "$$base" | sed "s|^$$srcdirstrip/||"`;; \
-	  esac; \
-	  if test -f $$base; then d=.; else d=$(srcdir); fi; \
-	  base_i=`echo "$$base" | sed 's|\.info$$||;s|$$|.i|'`; \
-	  for file in $$d/$$base $$d/$$base-[0-9] $$d/$$base-[0-9][0-9] $$d/$$base_i[0-9] $$d/$$base_i[0-9][0-9]; do \
-	    if test -f $$file; then \
-	      relfile=`expr "$$file" : "$$d/\(.*\)"`; \
-	      test -f "$(distdir)/$$relfile" || \
-		cp -p $$file "$(distdir)/$$relfile"; \
-	    else :; fi; \
-	  done; \
-	done
+dist-info:
 
 mostlyclean-aminfo:
-	-rm -rf doc/ctf-spec.t2d doc/ctf-spec.t2p
 
 clean-aminfo:
-	-test -z "doc/ctf-spec.dvi doc/ctf-spec.pdf doc/ctf-spec.ps doc/ctf-spec.html" \
-	|| rm -rf doc/ctf-spec.dvi doc/ctf-spec.pdf doc/ctf-spec.ps doc/ctf-spec.html
 
 maintainer-clean-aminfo:
 	@list='$(INFO_DEPS)'; for i in $$list; do \
@@ -1482,7 +1367,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f doc/$(am__dirstamp)
 	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
@@ -1687,32 +1571,11 @@ uninstall-am: uninstall-dvi-am uninstall-html-am \
 .PRECIOUS: Makefile
 
 
-@TCL_TRY_TRUE@check-DEJAGNU: site.exp development.exp
-@TCL_TRY_TRUE@	srcroot=`cd $(srcdir) && pwd`; export srcroot; \
-@TCL_TRY_TRUE@	r=`pwd`; export r; \
-@TCL_TRY_TRUE@	LC_ALL=C; export LC_ALL; \
-@TCL_TRY_TRUE@	EXPECT=$(EXPECT); export EXPECT; \
-@TCL_TRY_TRUE@	runtest=$(RUNTEST); \
-@TCL_TRY_TRUE@	if $(SHELL) -c "$$runtest --version" > /dev/null 2>&1; then \
-@TCL_TRY_TRUE@	  $$runtest --tool $(DEJATOOL) --srcdir $${srcroot}/testsuite \
-@TCL_TRY_TRUE@		CC="$(CC)" CC_FOR_TARGET="$(CC_FOR_TARGET)" \
-@TCL_TRY_TRUE@		CFLAGS="$(CFLAGS) -I$(INCDIR) -I$(srcdir) -I$(builddir) -I$(builddir)/../bfd $(ZLIBINC)" \
-@TCL_TRY_TRUE@		LIBS="$(libctf_nobfd_la_LIBADD) $(LIBS)" $(RUNTESTFLAGS); \
-@TCL_TRY_TRUE@	else echo "WARNING: could not find \`runtest'" 1>&2; :;\
-@TCL_TRY_TRUE@	fi
+@TCL_TRY_TRUE@check-DEJAGNU:
 
 @TCL_TRY_TRUE@development.exp: $(BFDDIR)/development.sh
 @TCL_TRY_TRUE@	$(AM_V_GEN)$(EGREP) "(development|experimental)=" $(BFDDIR)/development.sh  \
 @TCL_TRY_TRUE@	  | $(AWK) -F= '{ print "set " $$1 " " $$2 }' > $@
-
-@BUILD_INFO_TRUE@html-local: doc/ctf-spec/index.html
-@BUILD_INFO_TRUE@doc/ctf-spec/index.html: doc/ctf-spec.texi doc/$(am__dirstamp)
-@BUILD_INFO_TRUE@	$(AM_V_GEN)$(MAKEINFOHTML) $(AM_MAKEINFOHTMLFLAGS) $(MAKEINFOFLAGS) \
-@BUILD_INFO_TRUE@	  --split=node -I$(srcdir) --output doc/ctf-spec $(srcdir)/doc/ctf-spec.texi
-
-# Workaround bug in automake: it can't handle conditionally building info pages
-# since GNU projects normally include info pages in the source distributions.
-@BUILD_INFO_FALSE@doc/ctf-spec.info:
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
