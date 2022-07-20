@@ -1,23 +1,5 @@
 /* Routines to help build PEPI-format DLLs (Win64 etc)
-   Copyright (C) 2006-2022 Free Software Foundation, Inc.
-   Written by Kai Tietz, OneVision Software GmbH&CoKg.
-
-   This file is part of the GNU Binutils.
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston,
-   MA 02110-1301, USA.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #define COFF_IMAGE_WITH_PE
 #define COFF_WITH_PE
@@ -34,10 +16,8 @@
 #define pe_dll_kill_ats             pep_dll_kill_ats
 #define pe_dll_stdcall_aliases      pep_dll_stdcall_aliases
 #define pe_dll_warn_dup_exports     pep_dll_warn_dup_exports
-#define pe_use_nul_prefixed_import_tables \
-				    pep_use_nul_prefixed_import_tables
-#define pe_use_coff_long_section_names \
-				    pep_use_coff_long_section_names
+#define pe_use_nul_prefixed_import_tables pep_use_nul_prefixed_import_tables
+#define pe_use_coff_long_section_names pep_use_coff_long_section_names
 #define pe_leading_underscore	    pep_leading_underscore
 #define pe_dll_enable_reloc_section pep_dll_enable_reloc_section
 

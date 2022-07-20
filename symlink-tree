@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Create a symlink tree.
 #
 # Please review $(srcdir/SPL-README) for Licencing info.

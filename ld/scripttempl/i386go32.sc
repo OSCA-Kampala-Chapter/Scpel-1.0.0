@@ -1,10 +1,6 @@
 # Linker script for i386 go32 (DJGPP)
 #
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 
 test -z "$ENTRY" && ENTRY=start
 EXE=${CONSTRUCTING+${RELOCATING+-exe}}
@@ -21,11 +17,7 @@ DTOR='.dtor : {
   }'
 
 cat <<EOF
-/* Copyright (C) 2014-2022 Free Software Foundation, Inc.
-
-   Copying and distribution of this script, with or without modification,
-   are permitted in any medium without royalty provided the copyright
-   notice and this notice are preserved.  */
+/* Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 OUTPUT_FORMAT("${OUTPUT_FORMAT}${EXE}")
 

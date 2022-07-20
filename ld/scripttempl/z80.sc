@@ -1,8 +1,4 @@
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 
 if test "${OUTPUT_FORMAT}" = "elf32-z80"; then
   NO_REL_RELOCS=1
@@ -15,11 +11,7 @@ if test "${OUTPUT_FORMAT}" = "elf32-z80"; then
 fi
 
 cat << EOF
-/* Copyright (C) 2014-2022 Free Software Foundation, Inc.
-
-   Copying and distribution of this script, with or without modification,
-   are permitted in any medium without royalty provided the copyright
-   notice and this notice are preserved.  */
+/* Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 OUTPUT_FORMAT("${OUTPUT_FORMAT}")
 OUTPUT_ARCH("${ARCH}")

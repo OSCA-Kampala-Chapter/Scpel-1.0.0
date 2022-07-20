@@ -1,10 +1,6 @@
 # Adapted from mips.sc
 #
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 #
 # These variables may be overridden by the emulation file.  The
 # defaults are appropriate for a DECstation running Ultrix.

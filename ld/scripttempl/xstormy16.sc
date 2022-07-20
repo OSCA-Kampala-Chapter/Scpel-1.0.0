@@ -1,4 +1,4 @@
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 #
 # Copying and distribution of this file, with or without modification,
 # are permitted in any medium without royalty provided the copyright

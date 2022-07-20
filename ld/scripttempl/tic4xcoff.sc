@@ -1,8 +1,4 @@
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 
 # In microcomputer (MC) mode, the vectors are mapped into the on-chip ROM,
 # otherwise in microprocessor (MP) mode the vectors are mapped to address 0

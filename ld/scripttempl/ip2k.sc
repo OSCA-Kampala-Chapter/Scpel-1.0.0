@@ -1,18 +1,10 @@
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 
 # Using an empty script for ld -r is better than mashing together
 # sections.  This hack likely leaves ld -Ur broken.
 test -n "${RELOCATING}" || exit 0
 cat << EOF
-/* Copyright (C) 2014-2022 Free Software Foundation, Inc.
-
-   Copying and distribution of this script, with or without modification,
-   are permitted in any medium without royalty provided the copyright
-   notice and this notice are preserved.  */
+/* Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 OUTPUT_FORMAT("elf32-ip2k", "elf32-ip2k", "elf32-ip2k")
 OUTPUT_ARCH(ip2k)

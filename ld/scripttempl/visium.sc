@@ -1,8 +1,4 @@
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 
 #  Many sections come in three flavours.  There is the 'real' section,
 #  like ".data".  Then there are the per-procedure or per-variable

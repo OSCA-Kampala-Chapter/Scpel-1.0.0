@@ -1,8 +1,4 @@
-# Copyright (C) 2014-2022 Free Software Foundation, Inc.
-#
-# Copying and distribution of this file, with or without modification,
-# are permitted in any medium without royalty provided the copyright
-# notice and this notice are preserved.
+# Please review $(srcdir/SPL-README) for GNU licencing info.
 #
 # Unusual variables checked by this code:
 #	NOP - four byte opcode for no-op (defaults to 0)
