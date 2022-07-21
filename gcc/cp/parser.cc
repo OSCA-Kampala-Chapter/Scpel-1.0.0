@@ -1284,9 +1284,7 @@ struct saved_token_sentinel
   cp_lexer *lexer;
   unsigned len;
   saved_token_sentinel_mode mode;
-  saved_token_sentinel (cp_lexer *_lexer,
-			saved_token_sentinel_mode _mode = STS_COMMIT)
-    : lexer (_lexer), mode (_mode)
+  saved_token_sentinel (cp_lexer *_lexer, saved_token_sentinel_mode _mode = STS_COMMIT) : lexer (_lexer), mode (_mode)
   {
     len = lexer->saved_tokens.length ();
     cp_lexer_save_tokens (lexer);
