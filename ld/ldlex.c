@@ -1,5 +1,5 @@
 
-#line 2 "ldlex.c"
+#line 3 "../../Scpel-0.0.5/ld/ldlex.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -1329,28 +1329,10 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "ldlex.l"
-#line 4 "ldlex.l"
+#line 1 "../../Scpel-0.0.5/ld/ldlex.l"
+#line 4 "../../Scpel-0.0.5/ld/ldlex.l"
 
-/* Copyright (C) 1991-2022 Free Software Foundation, Inc.
-   Written by Steve Chamberlain of Cygnus Support.
-
-   This file is part of the GNU Binutils.
-
-   This program is free software; you can redistribute it and/or modify
-   it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 3 of the License, or
-   (at your option) any later version.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-   GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston,
-   MA 02110-1301, USA.  */
+/* Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #include "bfd.h"
 #include "safe-ctype.h"
@@ -1417,9 +1399,9 @@ static void lex_warn_invalid (char *where, char *what);
 */
 #define RTOKEN(x)  {  yylval.token = x; return x; }
 
-#line 1420 "ldlex.c"
+#line 1403 "../../Scpel-0.0.5/ld/ldlex.c"
 
-#line 1422 "ldlex.c"
+#line 1405 "../../Scpel-0.0.5/ld/ldlex.c"
 
 #define INITIAL 0
 #define SCRIPT 1
@@ -1642,10 +1624,10 @@ YY_DECL
 		}
 
 	{
-#line 114 "ldlex.l"
+#line 96 "../../Scpel-0.0.5/ld/ldlex.l"
 
 
-#line 117 "ldlex.l"
+#line 99 "../../Scpel-0.0.5/ld/ldlex.l"
   if (parser_input != input_selected)
     {
       /* The first token of the input determines the initial parser state.  */
@@ -1662,7 +1644,7 @@ YY_DECL
 	}
     }
 
-#line 1665 "ldlex.c"
+#line 1648 "../../Scpel-0.0.5/ld/ldlex.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1721,13 +1703,13 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 133 "ldlex.l"
+#line 115 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				comment (); }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 136 "ldlex.l"
+#line 118 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				yylval.integer = bfd_scan_vma (yytext + 1, 0, 16);
 				yylval.bigint.str = NULL;
@@ -1736,7 +1718,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 142 "ldlex.l"
+#line 124 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				   int ibase ;
 				   switch (yytext[yyleng - 1]) {
@@ -1765,7 +1747,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 167 "ldlex.l"
+#line 149 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				  char *s = yytext;
 				  int ibase = 0;
@@ -1821,834 +1803,834 @@ YY_RULE_SETUP
   */
 case 5:
 YY_RULE_SETUP
-#line 220 "ldlex.l"
+#line 202 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(']'); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 221 "ldlex.l"
+#line 203 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('['); }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 222 "ldlex.l"
+#line 204 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LSHIFTEQ); }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 223 "ldlex.l"
+#line 205 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(RSHIFTEQ); }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 224 "ldlex.l"
+#line 206 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(OROR); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 225 "ldlex.l"
+#line 207 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(EQ); }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 226 "ldlex.l"
+#line 208 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NE); }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 227 "ldlex.l"
+#line 209 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(GE); }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 228 "ldlex.l"
+#line 210 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LE); }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 229 "ldlex.l"
+#line 211 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LSHIFT); }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 230 "ldlex.l"
+#line 212 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(RSHIFT); }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 231 "ldlex.l"
+#line 213 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(PLUSEQ); }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 232 "ldlex.l"
+#line 214 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(MINUSEQ); }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 233 "ldlex.l"
+#line 215 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(MULTEQ); }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 234 "ldlex.l"
+#line 216 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(DIVEQ); }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 235 "ldlex.l"
+#line 217 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ANDEQ); }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 236 "ldlex.l"
+#line 218 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(OREQ); }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 237 "ldlex.l"
+#line 219 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ANDAND); }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 238 "ldlex.l"
+#line 220 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('>'); }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 239 "ldlex.l"
+#line 221 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(','); }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 240 "ldlex.l"
+#line 222 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('&'); }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 241 "ldlex.l"
+#line 223 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('|'); }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 242 "ldlex.l"
+#line 224 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('~'); }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 243 "ldlex.l"
+#line 225 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('!'); }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 244 "ldlex.l"
+#line 226 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('?'); }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 245 "ldlex.l"
+#line 227 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('*'); }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 246 "ldlex.l"
+#line 228 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('+'); }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 247 "ldlex.l"
+#line 229 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('-'); }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 248 "ldlex.l"
+#line 230 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('/'); }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 249 "ldlex.l"
+#line 231 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('%'); }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 250 "ldlex.l"
+#line 232 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('<'); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 251 "ldlex.l"
+#line 233 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('='); }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 252 "ldlex.l"
+#line 234 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('}'); }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 253 "ldlex.l"
+#line 235 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('{'); }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 254 "ldlex.l"
+#line 236 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(')'); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 255 "ldlex.l"
+#line 237 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN('('); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 256 "ldlex.l"
+#line 238 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(':'); }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 257 "ldlex.l"
+#line 239 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(';'); }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 258 "ldlex.l"
+#line 240 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(MEMORY); }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 259 "ldlex.l"
+#line 241 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(REGION_ALIAS); }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 260 "ldlex.l"
+#line 242 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LD_FEATURE); }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 261 "ldlex.l"
+#line 243 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ORIGIN); }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 262 "ldlex.l"
+#line 244 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(VERSIONK); }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 263 "ldlex.l"
+#line 245 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(BLOCK); }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 264 "ldlex.l"
+#line 246 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(BIND); }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 265 "ldlex.l"
+#line 247 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LENGTH); }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 266 "ldlex.l"
+#line 248 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGN_K); }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 267 "ldlex.l"
+#line 249 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(DATA_SEGMENT_ALIGN); }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 268 "ldlex.l"
+#line 250 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(DATA_SEGMENT_RELRO_END); }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 269 "ldlex.l"
+#line 251 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(DATA_SEGMENT_END); }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 270 "ldlex.l"
+#line 252 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ADDR); }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 271 "ldlex.l"
+#line 253 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LOADADDR); }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 272 "ldlex.l"
+#line 254 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGNOF); }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 273 "ldlex.l"
+#line 255 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ABSOLUTE); }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 274 "ldlex.l"
+#line 256 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(MAX_K); }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 275 "ldlex.l"
+#line 257 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(MIN_K); }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 276 "ldlex.l"
+#line 258 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LOG2CEIL); }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 277 "ldlex.l"
+#line 259 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ASSERT_K); }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 278 "ldlex.l"
+#line 260 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ENTRY); }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 279 "ldlex.l"
+#line 261 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(EXTERN); }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 280 "ldlex.l"
+#line 262 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NEXT); }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 281 "ldlex.l"
+#line 263 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SIZEOF_HEADERS); }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 282 "ldlex.l"
+#line 264 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SEGMENT_START); }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 283 "ldlex.l"
+#line 265 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(MAP); }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 284 "ldlex.l"
+#line 266 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SIZEOF); }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 285 "ldlex.l"
+#line 267 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(TARGET_K); }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 286 "ldlex.l"
+#line 268 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SEARCH_DIR); }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 287 "ldlex.l"
+#line 269 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(OUTPUT); }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 288 "ldlex.l"
+#line 270 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(INPUT); }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 289 "ldlex.l"
+#line 271 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(GROUP); }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 290 "ldlex.l"
+#line 272 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(AS_NEEDED); }
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 291 "ldlex.l"
+#line 273 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(DEFINED); }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 292 "ldlex.l"
+#line 274 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CREATE_OBJECT_SYMBOLS); }
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 293 "ldlex.l"
+#line 275 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CONSTRUCTORS); }
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 294 "ldlex.l"
+#line 276 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(FORCE_COMMON_ALLOCATION); }
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 295 "ldlex.l"
+#line 277 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(FORCE_GROUP_ALLOCATION); }
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 296 "ldlex.l"
+#line 278 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(INHIBIT_COMMON_ALLOCATION); }
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 297 "ldlex.l"
+#line 279 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SECTIONS); }
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 298 "ldlex.l"
+#line 280 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(INSERT_K); }
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 299 "ldlex.l"
+#line 281 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(AFTER); }
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 300 "ldlex.l"
+#line 282 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(BEFORE); }
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 301 "ldlex.l"
+#line 283 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(FILL); }
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 302 "ldlex.l"
+#line 284 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(STARTUP); }
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 303 "ldlex.l"
+#line 285 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(OUTPUT_FORMAT); }
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 304 "ldlex.l"
+#line 286 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(OUTPUT_ARCH); }
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 305 "ldlex.l"
+#line 287 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(HLL); }
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 306 "ldlex.l"
+#line 288 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SYSLIB); }
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 307 "ldlex.l"
+#line 289 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(FLOAT); }
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 308 "ldlex.l"
+#line 290 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(QUAD); }
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 309 "ldlex.l"
+#line 291 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SQUAD); }
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 310 "ldlex.l"
+#line 292 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LONG); }
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 311 "ldlex.l"
+#line 293 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SHORT); }
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 312 "ldlex.l"
+#line 294 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(BYTE); }
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 313 "ldlex.l"
+#line 295 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NOFLOAT); }
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 314 "ldlex.l"
+#line 296 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NOCROSSREFS); }
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 315 "ldlex.l"
+#line 297 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NOCROSSREFS_TO); }
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 316 "ldlex.l"
+#line 298 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(OVERLAY); }
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 317 "ldlex.l"
+#line 299 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SORT_BY_NAME); }
 	YY_BREAK
 case 103:
 YY_RULE_SETUP
-#line 318 "ldlex.l"
+#line 300 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SORT_BY_ALIGNMENT); }
 	YY_BREAK
 case 104:
 YY_RULE_SETUP
-#line 319 "ldlex.l"
+#line 301 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SORT_BY_NAME); }
 	YY_BREAK
 case 105:
 YY_RULE_SETUP
-#line 320 "ldlex.l"
+#line 302 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SORT_BY_INIT_PRIORITY); }
 	YY_BREAK
 case 106:
 YY_RULE_SETUP
-#line 321 "ldlex.l"
+#line 303 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SORT_NONE); }
 	YY_BREAK
 case 107:
 YY_RULE_SETUP
-#line 322 "ldlex.l"
+#line 304 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NOLOAD); }
 	YY_BREAK
 case 108:
 YY_RULE_SETUP
-#line 323 "ldlex.l"
+#line 305 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(READONLY); }
 	YY_BREAK
 case 109:
 YY_RULE_SETUP
-#line 324 "ldlex.l"
+#line 306 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(DSECT); }
 	YY_BREAK
 case 110:
 YY_RULE_SETUP
-#line 325 "ldlex.l"
+#line 307 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(COPY); }
 	YY_BREAK
 case 111:
 YY_RULE_SETUP
-#line 326 "ldlex.l"
+#line 308 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(INFO); }
 	YY_BREAK
 case 112:
 YY_RULE_SETUP
-#line 327 "ldlex.l"
+#line 309 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ONLY_IF_RO); }
 	YY_BREAK
 case 113:
 YY_RULE_SETUP
-#line 328 "ldlex.l"
+#line 310 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ONLY_IF_RW); }
 	YY_BREAK
 case 114:
 YY_RULE_SETUP
-#line 329 "ldlex.l"
+#line 311 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SPECIAL); }
 	YY_BREAK
 case 115:
 YY_RULE_SETUP
-#line 330 "ldlex.l"
+#line 312 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ORIGIN); }
 	YY_BREAK
 case 116:
 YY_RULE_SETUP
-#line 331 "ldlex.l"
+#line 313 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ORIGIN); }
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
-#line 332 "ldlex.l"
+#line 314 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LENGTH); }
 	YY_BREAK
 case 118:
 YY_RULE_SETUP
-#line 333 "ldlex.l"
+#line 315 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LENGTH); }
 	YY_BREAK
 case 119:
 YY_RULE_SETUP
-#line 334 "ldlex.l"
+#line 316 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(INPUT_SECTION_FLAGS); }
 	YY_BREAK
 case 120:
 YY_RULE_SETUP
-#line 335 "ldlex.l"
+#line 317 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(INCLUDE);}
 	YY_BREAK
 case 121:
 YY_RULE_SETUP
-#line 336 "ldlex.l"
+#line 318 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(PHDRS); }
 	YY_BREAK
 case 122:
 YY_RULE_SETUP
-#line 337 "ldlex.l"
+#line 319 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(AT);}
 	YY_BREAK
 case 123:
 YY_RULE_SETUP
-#line 338 "ldlex.l"
+#line 320 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGN_WITH_INPUT);}
 	YY_BREAK
 case 124:
 YY_RULE_SETUP
-#line 339 "ldlex.l"
+#line 321 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SUBALIGN);}
 	YY_BREAK
 case 125:
 YY_RULE_SETUP
-#line 340 "ldlex.l"
+#line 322 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(HIDDEN); }
 	YY_BREAK
 case 126:
 YY_RULE_SETUP
-#line 341 "ldlex.l"
+#line 323 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(PROVIDE); }
 	YY_BREAK
 case 127:
 YY_RULE_SETUP
-#line 342 "ldlex.l"
+#line 324 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(PROVIDE_HIDDEN); }
 	YY_BREAK
 case 128:
 YY_RULE_SETUP
-#line 343 "ldlex.l"
+#line 325 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(KEEP); }
 	YY_BREAK
 case 129:
 YY_RULE_SETUP
-#line 344 "ldlex.l"
+#line 326 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(EXCLUDE_FILE); }
 	YY_BREAK
 case 130:
 YY_RULE_SETUP
-#line 345 "ldlex.l"
+#line 327 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CONSTANT);}
 	YY_BREAK
 case 131:
 /* rule 131 can match eol */
 YY_RULE_SETUP
-#line 347 "ldlex.l"
+#line 329 "../../Scpel-0.0.5/ld/ldlex.l"
 { ++ lineno; }
 	YY_BREAK
 case 132:
 /* rule 132 can match eol */
 YY_RULE_SETUP
-#line 348 "ldlex.l"
+#line 330 "../../Scpel-0.0.5/ld/ldlex.l"
 { ++ lineno;  RTOKEN(NEWLINE); }
 	YY_BREAK
 case 133:
 YY_RULE_SETUP
-#line 349 "ldlex.l"
+#line 331 "../../Scpel-0.0.5/ld/ldlex.l"
 { /* Mri comment line */ }
 	YY_BREAK
 case 134:
 YY_RULE_SETUP
-#line 350 "ldlex.l"
+#line 332 "../../Scpel-0.0.5/ld/ldlex.l"
 { /* Mri comment line */ }
 	YY_BREAK
 case 135:
 YY_RULE_SETUP
-#line 351 "ldlex.l"
+#line 333 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ENDWORD); }
 	YY_BREAK
 case 136:
 YY_RULE_SETUP
-#line 352 "ldlex.l"
+#line 334 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ABSOLUTE); }
 	YY_BREAK
 case 137:
 YY_RULE_SETUP
-#line 353 "ldlex.l"
+#line 335 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGNMOD);}
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
-#line 354 "ldlex.l"
+#line 336 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGN_K);}
 	YY_BREAK
 case 139:
 YY_RULE_SETUP
-#line 355 "ldlex.l"
+#line 337 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CHIP); }
 	YY_BREAK
 case 140:
 YY_RULE_SETUP
-#line 356 "ldlex.l"
+#line 338 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(BASE); }
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
-#line 357 "ldlex.l"
+#line 339 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIAS); }
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
-#line 358 "ldlex.l"
+#line 340 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(TRUNCATE); }
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
-#line 359 "ldlex.l"
+#line 341 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LOAD); }
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
-#line 360 "ldlex.l"
+#line 342 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(PUBLIC); }
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
-#line 361 "ldlex.l"
+#line 343 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ORDER); }
 	YY_BREAK
 case 146:
 YY_RULE_SETUP
-#line 362 "ldlex.l"
+#line 344 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NAMEWORD); }
 	YY_BREAK
 case 147:
 YY_RULE_SETUP
-#line 363 "ldlex.l"
+#line 345 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(FORMAT); }
 	YY_BREAK
 case 148:
 YY_RULE_SETUP
-#line 364 "ldlex.l"
+#line 346 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CASE); }
 	YY_BREAK
 case 149:
 YY_RULE_SETUP
-#line 365 "ldlex.l"
+#line 347 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(START); }
 	YY_BREAK
 case 150:
 YY_RULE_SETUP
-#line 366 "ldlex.l"
+#line 348 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LIST); /* LIST and ignore to end of line */ }
 	YY_BREAK
 case 151:
 YY_RULE_SETUP
-#line 367 "ldlex.l"
+#line 349 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SECT); }
 	YY_BREAK
 case 152:
 YY_RULE_SETUP
-#line 368 "ldlex.l"
+#line 350 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ENDWORD); }
 	YY_BREAK
 case 153:
 YY_RULE_SETUP
-#line 369 "ldlex.l"
+#line 351 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ABSOLUTE); }
 	YY_BREAK
 case 154:
 YY_RULE_SETUP
-#line 370 "ldlex.l"
+#line 352 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGNMOD);}
 	YY_BREAK
 case 155:
 YY_RULE_SETUP
-#line 371 "ldlex.l"
+#line 353 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIGN_K);}
 	YY_BREAK
 case 156:
 YY_RULE_SETUP
-#line 372 "ldlex.l"
+#line 354 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CHIP); }
 	YY_BREAK
 case 157:
 YY_RULE_SETUP
-#line 373 "ldlex.l"
+#line 355 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(BASE); }
 	YY_BREAK
 case 158:
 YY_RULE_SETUP
-#line 374 "ldlex.l"
+#line 356 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ALIAS); }
 	YY_BREAK
 case 159:
 YY_RULE_SETUP
-#line 375 "ldlex.l"
+#line 357 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(TRUNCATE); }
 	YY_BREAK
 case 160:
 YY_RULE_SETUP
-#line 376 "ldlex.l"
+#line 358 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LOAD); }
 	YY_BREAK
 case 161:
 YY_RULE_SETUP
-#line 377 "ldlex.l"
+#line 359 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(PUBLIC); }
 	YY_BREAK
 case 162:
 YY_RULE_SETUP
-#line 378 "ldlex.l"
+#line 360 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(ORDER); }
 	YY_BREAK
 case 163:
 YY_RULE_SETUP
-#line 379 "ldlex.l"
+#line 361 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(NAMEWORD); }
 	YY_BREAK
 case 164:
 YY_RULE_SETUP
-#line 380 "ldlex.l"
+#line 362 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(FORMAT); }
 	YY_BREAK
 case 165:
 YY_RULE_SETUP
-#line 381 "ldlex.l"
+#line 363 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(CASE); }
 	YY_BREAK
 case 166:
 YY_RULE_SETUP
-#line 382 "ldlex.l"
+#line 364 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(EXTERN); }
 	YY_BREAK
 case 167:
 YY_RULE_SETUP
-#line 383 "ldlex.l"
+#line 365 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(START); }
 	YY_BREAK
 case 168:
 YY_RULE_SETUP
-#line 384 "ldlex.l"
+#line 366 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LIST); /* LIST and ignore to end of line */ }
 	YY_BREAK
 case 169:
 YY_RULE_SETUP
-#line 385 "ldlex.l"
+#line 367 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(SECT); }
 	YY_BREAK
 case 170:
 YY_RULE_SETUP
-#line 387 "ldlex.l"
+#line 369 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 /* Filename without commas, needed to parse mri stuff */
 				  yylval.name = xstrdup (yytext);
@@ -2657,7 +2639,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 171:
 YY_RULE_SETUP
-#line 394 "ldlex.l"
+#line 376 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext);
 				  return NAME;
@@ -2665,7 +2647,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 172:
 YY_RULE_SETUP
-#line 398 "ldlex.l"
+#line 380 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 /* Filename to be prefixed by --sysroot or when non-sysrooted, nothing.  */
 				  yylval.name = xstrdup (yytext);
@@ -2674,7 +2656,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 173:
 YY_RULE_SETUP
-#line 403 "ldlex.l"
+#line 385 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext + 2);
 				  return LNAME;
@@ -2682,7 +2664,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 174:
 YY_RULE_SETUP
-#line 407 "ldlex.l"
+#line 389 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext);
 				  return NAME;
@@ -2692,7 +2674,7 @@ YY_RULE_SETUP
      section before /DISCARD/ interpreting the '/' as a divide.  */
 case 175:
 YY_RULE_SETUP
-#line 413 "ldlex.l"
+#line 395 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				  yylval.name = xstrdup (yytext);
 				  return NAME;
@@ -2700,7 +2682,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 176:
 YY_RULE_SETUP
-#line 417 "ldlex.l"
+#line 399 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 		/* Annoyingly, this pattern can match comments, and we have
 		   longest match issues to consider.  So if the first two
@@ -2721,7 +2703,7 @@ YY_RULE_SETUP
 case 177:
 /* rule 177 can match eol */
 YY_RULE_SETUP
-#line 434 "ldlex.l"
+#line 416 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 		/* No matter the state, quotes give what's inside.  */
 		yylval.name = xmemdup (yytext + 1, yyleng - 2, yyleng - 1);
@@ -2731,62 +2713,62 @@ YY_RULE_SETUP
 case 178:
 /* rule 178 can match eol */
 YY_RULE_SETUP
-#line 440 "ldlex.l"
+#line 422 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				lineno++; }
 	YY_BREAK
 case 179:
 YY_RULE_SETUP
-#line 442 "ldlex.l"
+#line 424 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				/* Eat up whitespace */ }
 	YY_BREAK
 case 180:
 YY_RULE_SETUP
-#line 444 "ldlex.l"
+#line 426 "../../Scpel-0.0.5/ld/ldlex.l"
 {
 				/* Eat up comments */ }
 	YY_BREAK
 case 181:
 YY_RULE_SETUP
-#line 447 "ldlex.l"
+#line 429 "../../Scpel-0.0.5/ld/ldlex.l"
 { return *yytext; }
 	YY_BREAK
 case 182:
 YY_RULE_SETUP
-#line 449 "ldlex.l"
+#line 431 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(GLOBAL); }
 	YY_BREAK
 case 183:
 YY_RULE_SETUP
-#line 451 "ldlex.l"
+#line 433 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(LOCAL); }
 	YY_BREAK
 case 184:
 YY_RULE_SETUP
-#line 453 "ldlex.l"
+#line 435 "../../Scpel-0.0.5/ld/ldlex.l"
 { RTOKEN(EXTERN); }
 	YY_BREAK
 case 185:
 YY_RULE_SETUP
-#line 455 "ldlex.l"
+#line 437 "../../Scpel-0.0.5/ld/ldlex.l"
 { yylval.name = xstrdup (yytext);
 				  return VERS_IDENTIFIER; }
 	YY_BREAK
 case 186:
 YY_RULE_SETUP
-#line 458 "ldlex.l"
+#line 440 "../../Scpel-0.0.5/ld/ldlex.l"
 { yylval.name = xstrdup (yytext);
 				  return VERS_TAG; }
 	YY_BREAK
 case 187:
 YY_RULE_SETUP
-#line 461 "ldlex.l"
+#line 443 "../../Scpel-0.0.5/ld/ldlex.l"
 { BEGIN(VERS_SCRIPT); return *yytext; }
 	YY_BREAK
 case 188:
 YY_RULE_SETUP
-#line 463 "ldlex.l"
+#line 445 "../../Scpel-0.0.5/ld/ldlex.l"
 { BEGIN(VERS_NODE);
 				  vers_node_nesting = 0;
 				  return *yytext;
@@ -2794,17 +2776,17 @@ YY_RULE_SETUP
 	YY_BREAK
 case 189:
 YY_RULE_SETUP
-#line 467 "ldlex.l"
+#line 449 "../../Scpel-0.0.5/ld/ldlex.l"
 { return *yytext; }
 	YY_BREAK
 case 190:
 YY_RULE_SETUP
-#line 468 "ldlex.l"
+#line 450 "../../Scpel-0.0.5/ld/ldlex.l"
 { vers_node_nesting++; return *yytext; }
 	YY_BREAK
 case 191:
 YY_RULE_SETUP
-#line 469 "ldlex.l"
+#line 451 "../../Scpel-0.0.5/ld/ldlex.l"
 { if (--vers_node_nesting < 0)
 				    BEGIN(VERS_SCRIPT);
 				  return *yytext;
@@ -2819,7 +2801,7 @@ case YY_STATE_EOF(WILD):
 case YY_STATE_EOF(VERS_START):
 case YY_STATE_EOF(VERS_SCRIPT):
 case YY_STATE_EOF(VERS_NODE):
-#line 474 "ldlex.l"
+#line 456 "../../Scpel-0.0.5/ld/ldlex.l"
 {
   include_stack_ptr--;
   if (include_stack_ptr == 0)
@@ -2838,20 +2820,20 @@ case YY_STATE_EOF(VERS_NODE):
 	YY_BREAK
 case 192:
 YY_RULE_SETUP
-#line 490 "ldlex.l"
+#line 472 "../../Scpel-0.0.5/ld/ldlex.l"
 lex_warn_invalid (" in script", yytext);
 	YY_BREAK
 case 193:
 YY_RULE_SETUP
-#line 491 "ldlex.l"
+#line 473 "../../Scpel-0.0.5/ld/ldlex.l"
 lex_warn_invalid (" in expression", yytext);
 	YY_BREAK
 case 194:
 YY_RULE_SETUP
-#line 493 "ldlex.l"
+#line 475 "../../Scpel-0.0.5/ld/ldlex.l"
 ECHO;
 	YY_BREAK
-#line 2854 "ldlex.c"
+#line 2837 "../../Scpel-0.0.5/ld/ldlex.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -3817,7 +3799,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 493 "ldlex.l"
+#line 475 "../../Scpel-0.0.5/ld/ldlex.l"
 
 
 
