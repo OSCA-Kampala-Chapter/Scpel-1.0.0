@@ -1,21 +1,5 @@
 /* Symbol, variable and name lookup.
-   Copyright (C) 2019-2022 Free Software Foundation, Inc.
-
-   This file is part of libctf.
-
-   libctf is free software; you can redistribute it and/or modify it under
-   the terms of the GNU General Public License as published by the Free
-   Software Foundation; either version 3, or (at your option) any later
-   version.
-
-   This program is distributed in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-   See the GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not see
-   <http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #include <ctf-impl.h>
 #include <elf.h>
@@ -28,14 +12,12 @@ grow_pptrtab (ctf_dict_t *fp, size_t new_len)
 {
   uint32_t *new_pptrtab;
 
-  if ((new_pptrtab = realloc (fp->ctf_pptrtab, sizeof (uint32_t)
-			      * new_len)) == NULL)
+  if ((new_pptrtab = realloc (fp->ctf_pptrtab, sizeof (uint32_t) * new_len)) == NULL)
     return (ctf_set_errno (fp, ENOMEM));
 
   fp->ctf_pptrtab = new_pptrtab;
 
-  memset (fp->ctf_pptrtab + fp->ctf_pptrtab_len, 0,
-	  sizeof (uint32_t) * (new_len - fp->ctf_pptrtab_len));
+  memset (fp->ctf_pptrtab + fp->ctf_pptrtab_len, 0, sizeof (uint32_t) * (new_len - fp->ctf_pptrtab_len));
 
   fp->ctf_pptrtab_len = new_len;
   return 0;

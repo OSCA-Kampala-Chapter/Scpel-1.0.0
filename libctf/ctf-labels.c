@@ -1,28 +1,11 @@
 /* Labelled ranges of type IDs.
-   Copyright (C) 2019-2022 Free Software Foundation, Inc.
-
-   This file is part of libctf.
-
-   libctf is free software; you can redistribute it and/or modify it under
-   the terms of the GNU General Public License as published by the Free
-   Software Foundation; either version 3, or (at your option) any later
-   version.
-
-   This program is distributed in the hope that it will be useful, but
-   WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-   See the GNU General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; see the file COPYING.  If not see
-   <http://www.gnu.org/licenses/>.  */
+  Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #include <ctf-impl.h>
 #include <string.h>
 
 static int
-extract_label_info (ctf_dict_t *fp, const ctf_lblent_t **ctl,
-		    uint32_t *num_labels)
+extract_label_info (ctf_dict_t *fp, const ctf_lblent_t **ctl, uint32_t *num_labels)
 {
   const ctf_header_t *h;
 
