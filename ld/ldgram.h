@@ -1,8 +1,22 @@
-/* A Bison parser, made by GNU Bison 3.7.4.  */
+/* A Bison parser, made by GNU Bison 3.7.5.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Please review $(srcdir/SPL-README) for GNU licencing info. */
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Inc.
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -21,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_LDGRAM_H_INCLUDED
-# define YY_YY_LDGRAM_H_INCLUDED
+#ifndef YY_YY__SCPEL_LD_LDGRAM_H_INCLUDED
+# define YY_YY__SCPEL_LD_LDGRAM_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -315,7 +329,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 61 "ldgram.y"
+#line 43 "../../Scpel-0.0.5/ld/ldgram.y"
 
   bfd_vma integer;
   struct big_int
@@ -346,7 +360,7 @@ union YYSTYPE
   struct bfd_elf_version_expr *versyms;
   struct bfd_elf_version_tree *versnode;
 
-#line 364 "ldgram.h"
+#line 364 "../../Scpel-0.0.5/ld/ldgram.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -359,4 +373,4 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_LDGRAM_H_INCLUDED  */
+#endif /* !YY_YY__SCPEL_LD_LDGRAM_H_INCLUDED  */
