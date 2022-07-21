@@ -1,45 +1,6 @@
 // shared_ptr and weak_ptr implementation -*- C++ -*-
 
-// Copyright (C) 2007-2022 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
-
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// Under Section 7 of GPL version 3, you are granted additional
-// permissions described in the GCC Runtime Library Exception, version
-// 3.1, as published by the Free Software Foundation.
-
-// You should have received a copy of the GNU General Public License and
-// a copy of the GCC Runtime Library Exception along with this program;
-// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
-// <http://www.gnu.org/licenses/>.
-
-// GCC Note: Based on files from version 1.32.0 of the Boost library.
-
-//  shared_count.hpp
-//  Copyright (c) 2001, 2002, 2003 Peter Dimov and Multi Media Ltd.
-
-//  shared_ptr.hpp
-//  Copyright (C) 1998, 1999 Greg Colvin and Beman Dawes.
-//  Copyright (C) 2001, 2002, 2003 Peter Dimov
-
-//  weak_ptr.hpp
-//  Copyright (C) 2001, 2002, 2003 Peter Dimov
-
-//  enable_shared_from_this.hpp
-//  Copyright (C) 2002 Peter Dimov
-
-// Distributed under the Boost Software License, Version 1.0. (See
-// accompanying file LICENSE_1_0.txt or copy at
-// http://www.boost.org/LICENSE_1_0.txt)
+// Please review $(srcdir/SPL-README) for GNU licencing info.
 
 /** @file
  *  This is an internal header file, included by other library headers.
