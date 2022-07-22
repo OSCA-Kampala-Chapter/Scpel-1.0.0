@@ -237,11 +237,6 @@ static void noexcept_override_late_checks
 static void cp_parser_initial_pragma
   (cp_token *);
 
-static bool cp_parser_omp_declare_reduction_exprs
-  (tree, cp_parser *);
-static void cp_finalize_oacc_routine
-  (cp_parser *, tree, bool);
-
 /* Manifest constants.  */
 #define CP_LEXER_BUFFER_SIZE ((256 * 1024) / sizeof (cp_token))
 #define CP_SAVED_TOKEN_STACK 5
@@ -22554,8 +22549,7 @@ cp_parser_init_declarator (cp_parser* parser,
       decl = start_decl (declarator, decl_specifiers,
 			 range_for_decl_p? SD_INITIALIZED : is_initialized,
 			 attributes, prefix_attributes, &pushed_scope);
-      cp_finalize_omp_declare_simd (parser, decl);
-      cp_finalize_oacc_routine (parser, decl, false);
+// possible bug
       /* Adjust location of decl if declarator->id_loc is more appropriate:
 	 set, and decl wasn't merged with another decl, in which case its
 	 location would be different from input_location, and more accurate.  */
@@ -22684,9 +22678,7 @@ cp_parser_init_declarator (cp_parser* parser,
 			/*asmspec=*/NULL_TREE,
 			attr_chainon (attributes, prefix_attributes));
       if (decl && TREE_CODE (decl) == FUNCTION_DECL)
-	cp_parser_save_default_args (parser, decl);
-      cp_finalize_omp_declare_simd (parser, decl);
-      cp_finalize_oacc_routine (parser, decl, false);
+			cp_parser_save_default_args (parser, decl);
     }
 
   /* Finish processing the declaration.  But, skip member
@@ -23913,8 +23905,7 @@ parsing_function_declarator ()
    function.  */
 
 static tree
-cp_parser_late_return_type_opt (cp_parser* parser, cp_declarator *declarator,
-				tree& requires_clause)
+cp_parser_late_return_type_opt (cp_parser* parser, cp_declarator *declarator, tree& requires_clause)
 {
   cp_token *token;
   tree type = NULL_TREE;
@@ -23950,12 +23941,7 @@ cp_parser_late_return_type_opt (cp_parser* parser, cp_declarator *declarator,
 
   if (declare_simd_p)
     declarator->attributes
-      = cp_parser_late_parsing_omp_declare_simd (parser,
-						 declarator->attributes);
-  if (oacc_routine_p)
-    declarator->attributes
-      = cp_parser_late_parsing_oacc_routine (parser,
-					     declarator->attributes);
+      = 0;	// possible bug
 
   return type;
 }
@@ -27313,9 +27299,6 @@ cp_parser_member_declaration (cp_parser* parser)
 		    decl = finish_fully_implicit_template (parser, decl);
 		}
 	    }
-
-	  cp_finalize_omp_declare_simd (parser, decl);
-	  cp_finalize_oacc_routine (parser, decl, false);
 
 	  /* Reset PREFIX_ATTRIBUTES.  */
 	  if (attributes != error_mark_node)
@@ -31028,15 +31011,7 @@ cp_parser_function_definition_from_specifiers_and_declarator
      scope of the function to perform the checks, since the function
      might be a friend.  */
   perform_deferred_access_checks (tf_warning_or_error);
-
-  if (success_p)
-    {
-      cp_finalize_omp_declare_simd (parser, current_function_decl);
-      parser->omp_declare_simd = NULL;
-      cp_finalize_oacc_routine (parser, current_function_decl, true);
-      parser->oacc_routine = NULL;
-    }
-
+// possible bug
   if (!success_p)
     {
       /* Skip the entire function.  */
@@ -31804,8 +31779,7 @@ cp_parser_save_member_function_body (cp_parser* parser,
 
   /* Create the FUNCTION_DECL.  */
   fn = grokmethod (decl_specifiers, declarator, attributes);
-  cp_finalize_omp_declare_simd (parser, fn);
-  cp_finalize_oacc_routine (parser, fn, true);
+
   /* If something went badly wrong, bail out now.  */
   if (fn == error_mark_node)
     {
@@ -32097,16 +32071,7 @@ cp_parser_late_parsing_for_member (cp_parser* parser, tree member_function)
       start_preparsed_function (member_function, NULL_TREE,
 				SF_PRE_PARSED | SF_INCLASS_INLINE);
 
-      /* #pragma omp declare reduction needs special parsing.  */
-      if (DECL_OMP_DECLARE_REDUCTION_P (member_function))
-	{
-	  parser->lexer->in_pragma = true;
-	  cp_parser_omp_declare_reduction_exprs (member_function, parser);
-	  finish_function (/*inline_p=*/true);
-	  cp_check_omp_declare_reduction (member_function);
-	}
-      else
-	/* Now, parse the body of the function.  */
+    /* Now, parse the body of the function.  */
 	cp_parser_function_definition_after_declarator (parser,
 							/*inline_p=*/true);
 
