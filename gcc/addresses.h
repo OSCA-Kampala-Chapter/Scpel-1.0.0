@@ -1,21 +1,5 @@
 /* Inline functions to test validity of reg classes for addressing modes.
-   Copyright (C) 2006-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 /* Wrapper function to unify target macros MODE_CODE_BASE_REG_CLASS,
    MODE_BASE_REG_REG_CLASS, MODE_BASE_REG_CLASS and BASE_REG_CLASS.
@@ -31,8 +15,7 @@ base_reg_class (machine_mode mode ATTRIBUTE_UNUSED,
 		enum rtx_code index_code ATTRIBUTE_UNUSED)
 {
 #ifdef MODE_CODE_BASE_REG_CLASS
-  return MODE_CODE_BASE_REG_CLASS (MACRO_MODE (mode), as, outer_code,
-				   index_code);
+  return MODE_CODE_BASE_REG_CLASS (MACRO_MODE (mode), as, outer_code, index_code);
 #else
 #ifdef MODE_BASE_REG_REG_CLASS
   if (index_code == REG)

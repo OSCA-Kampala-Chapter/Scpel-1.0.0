@@ -23,16 +23,14 @@ along with GCC; see the file COPYING3.  If not see
 
 extern void asan_function_start (void);
 extern void asan_finish_file (void);
-extern rtx_insn *asan_emit_stack_protection (rtx, rtx, unsigned int,
-					     HOST_WIDE_INT *, tree *, int);
+extern rtx_insn *asan_emit_stack_protection (rtx, rtx, unsigned int, HOST_WIDE_INT *, tree *, int);
 extern rtx_insn *asan_emit_allocas_unpoison (rtx, rtx, rtx_insn *);
 extern bool asan_protect_global (tree, bool ignore_decl_rtl_set_p = false);
 extern void initialize_sanitizer_builtins (void);
 extern tree asan_dynamic_init_call (bool);
 extern bool asan_expand_check_ifn (gimple_stmt_iterator *, bool);
 extern bool asan_expand_mark_ifn (gimple_stmt_iterator *);
-extern bool asan_expand_poison_ifn (gimple_stmt_iterator *, bool *,
-				    hash_map<tree, tree> &);
+extern bool asan_expand_poison_ifn (gimple_stmt_iterator *, bool *, hash_map<tree, tree> &);
 
 extern void hwasan_record_frame_init ();
 extern void hwasan_record_stack_var (rtx, rtx, poly_int64, poly_int64);
@@ -53,8 +51,7 @@ extern bool hwasan_expand_check_ifn (gimple_stmt_iterator *, bool);
 extern bool hwasan_expand_mark_ifn (gimple_stmt_iterator *);
 extern bool gate_hwasan (void);
 
-extern gimple_stmt_iterator create_cond_insert_point
-     (gimple_stmt_iterator *, bool, bool, bool, basic_block *, basic_block *);
+extern gimple_stmt_iterator create_cond_insert_point(gimple_stmt_iterator *, bool, bool, bool, basic_block *, basic_block *);
 
 /* Alias set for accessing the shadow memory.  */
 extern alias_set_type asan_shadow_set;
