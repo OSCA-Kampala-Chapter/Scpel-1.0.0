@@ -1,23 +1,7 @@
 /* Language-independent diagnostic subroutines for the GNU Compiler
    Collection that are only for use in the compilers proper and not
    the driver or other programs.
-   Copyright (C) 1999-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #include "config.h"
 #include "system.h"
@@ -34,8 +18,7 @@ along with GCC; see the file COPYING3.  If not see
 /* Prints out, if necessary, the name of the current function
    that caused an error.  Called from all error and warning functions.  */
 void
-diagnostic_report_current_function (diagnostic_context *context,
-				    diagnostic_info *diagnostic)
+diagnostic_report_current_function (diagnostic_context *context, diagnostic_info *diagnostic)
 {
   location_t loc = diagnostic_location (diagnostic);
   diagnostic_report_current_module (context, loc);
