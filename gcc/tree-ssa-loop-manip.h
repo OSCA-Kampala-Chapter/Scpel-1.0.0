@@ -1,31 +1,13 @@
 /* Header file for High-level loop manipulation functions.
-   Copyright (C) 2013-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #ifndef GCC_TREE_SSA_LOOP_MANIP_H
 #define GCC_TREE_SSA_LOOP_MANIP_H
 
 typedef void (*transform_callback)(class loop *, void *);
 
-extern void create_iv (tree, tree, tree, class loop *, gimple_stmt_iterator *,
-		       bool, tree *, tree *);
-extern void rewrite_into_loop_closed_ssa_1 (bitmap, unsigned, int,
-					    class loop *);
+extern void create_iv (tree, tree, tree, class loop *, gimple_stmt_iterator *, bool, tree *, tree *);
+extern void rewrite_into_loop_closed_ssa_1 (bitmap, unsigned, int, class loop *);
 extern void rewrite_into_loop_closed_ssa (bitmap, unsigned);
 extern void rewrite_virtuals_into_loop_closed_ssa (class loop *);
 extern void verify_loop_closed_ssa (bool, class loop * = NULL);
