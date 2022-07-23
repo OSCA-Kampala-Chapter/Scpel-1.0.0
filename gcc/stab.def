@@ -1,23 +1,8 @@
 /* Table of DBX symbol codes for the GNU system.
-   Copyright (C) 1988-2022 Free Software Foundation, Inc.
-   This file is part of the GNU C Library.
-
-   The GNU C Library is free software; you can redistribute it and/or
-   modify it under the terms of the GNU Library General Public License as
-   published by the Free Software Foundation; either version 3 of the
-   License, or (at your option) any later version.
-
-   The GNU C Library is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   Library General Public License for more details.
-
-   You should have received a copy of the GNU Library General Public
-   License along with the GNU C Library; see the file COPYING3.  If
-   not see <http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 /* This contains contribution from Cygnus Support.  */
-
+
 /* Global variable.  Only the name is significant.
    To find the address, look in the corresponding external symbol.  */
 __define_stab (N_GSYM, 0x20, "GSYM")

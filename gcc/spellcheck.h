@@ -1,21 +1,5 @@
 /* Find near-matches for strings and identifiers.
-   Copyright (C) 2015-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/SPL-README) for GNU licencing info. */
 
 #ifndef GCC_SPELLCHECK_H
 #define GCC_SPELLCHECK_H
@@ -25,15 +9,13 @@ const edit_distance_t MAX_EDIT_DISTANCE = UINT_MAX;
 
 /* spellcheck.cc  */
 extern edit_distance_t
-get_edit_distance (const char *s, int len_s,
-		   const char *t, int len_t);
+get_edit_distance (const char *s, int len_s, const char *t, int len_t);
 
 extern edit_distance_t
 get_edit_distance (const char *s, const char *t);
 
 extern const char *
-find_closest_string (const char *target,
-		     const auto_vec<const char *> *candidates);
+find_closest_string (const char *target, const auto_vec<const char *> *candidates);
 
 /* A traits class for describing a string-like type usable by
    class best_match.
