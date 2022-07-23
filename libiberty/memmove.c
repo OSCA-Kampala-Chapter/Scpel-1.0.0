@@ -1,5 +1,4 @@
 /* Wrapper to implement ANSI C's memmove using BSD's bcopy. */
-/* This function is in the public domain.  --Per Bothner. */
 
 /*
 
