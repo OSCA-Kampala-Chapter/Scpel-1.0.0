@@ -1,7 +1,4 @@
-/* Version of sigsetmask.c
-   Written by Steve Chamberlain (sac@cygnus.com).
-   Contributed by Cygnus Support.
-   This file is in the public doamin. */
+/* Version of sigsetmask.c */
 
 /*
 
