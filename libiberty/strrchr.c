@@ -1,5 +1,4 @@
-/* Portable version of strrchr().
-   This function is in the public domain. */
+/* Portable version of strrchr(). */
 
 /*
 

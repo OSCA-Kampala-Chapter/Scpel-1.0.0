@@ -1,5 +1,4 @@
-/* Simple implementation of strstr for systems without it.
-   This function is in the public domain.  */
+/* Simple implementation of strstr for systems without it. */
 
 /*
 
