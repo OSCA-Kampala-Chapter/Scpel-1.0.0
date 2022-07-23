@@ -1,0 +1,5 @@
+The files in this directory are sourced by genscripts.sh, after
+setting some variables to substitute in, to produce
+C source files that contain jump tables for each emulation.
+
+Please review $(srcdir/SPL-README) for GNU licencing info.
