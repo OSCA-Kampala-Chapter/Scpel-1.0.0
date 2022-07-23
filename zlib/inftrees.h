@@ -1,7 +1,4 @@
-/* inftrees.h -- header to use inftrees.c
- * Copyright (C) 1995-2005, 2010 Mark Adler
- * For conditions of distribution and use, see copyright notice in zlib.h
- */
+/* inftrees.h -- header to use inftrees.c */
 
 /* WARNING: this file should *not* be used by applications. It is
    part of the implementation of the compression library and is

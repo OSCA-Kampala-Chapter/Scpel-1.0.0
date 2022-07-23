@@ -1,7 +1,4 @@
-/* minigzip.c -- simulate gzip using the zlib compression library
- * Copyright (C) 1995-2006, 2010 Jean-loup Gailly.
- * For conditions of distribution and use, see copyright notice in zlib.h
- */
+/* minigzip.c -- simulate gzip using the zlib compression library */
 
 /*
  * minigzip is a minimal implementation of the gzip utility. This is
@@ -12,8 +9,6 @@
  * real thing. On MSDOS, use only on file names without extension
  * or in pipe mode.
  */
-
-/* @(#) $Id: minigzip.c,v 1.1.1.2 2002/03/11 21:53:26 tromey Exp $ */
 
 #include "zlib.h"
 #include <stdio.h>

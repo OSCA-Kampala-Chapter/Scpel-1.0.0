@@ -2,9 +2,6 @@
 
 # Transform K&R C function definitions into ANSI equivalent.
 #
-# Author: Paul Marquess
-# Version: 1.0
-# Date: 3 October 2006
 
 # TODO
 #

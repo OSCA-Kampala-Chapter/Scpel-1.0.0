@@ -1,7 +1,4 @@
-/* infback.c -- inflate using a call-back interface
- * Copyright (C) 1995-2016 Mark Adler
- * For conditions of distribution and use, see copyright notice in zlib.h
- */
+/* infback.c -- inflate using a call-back interface */
 
 /*
    This code is largely copied from inflate.c.  Normally either infback.o or

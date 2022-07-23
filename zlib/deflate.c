@@ -1,7 +1,4 @@
-/* deflate.c -- compress data using the deflation algorithm
- * Copyright (C) 1995-2017 Jean-loup Gailly and Mark Adler
- * For conditions of distribution and use, see copyright notice in zlib.h
- */
+/* deflate.c -- compress data using the deflation algorithm */
 
 /*
  *  ALGORITHM
@@ -46,8 +43,6 @@
  *         Data Compression with Finite Windows, Comm.ACM, 32,4 (1989) 490-595
  *
  */
-
-/* @(#) $Id: deflate.c,v 1.1.1.2 2002/03/11 21:53:23 tromey Exp $ */
 
 #include "deflate.h"
 
