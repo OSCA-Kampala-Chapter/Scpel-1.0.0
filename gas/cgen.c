@@ -12,8 +12,7 @@
 #include "symbols.h"
 
 #ifdef OBJ_COMPLEX_RELC
-static expressionS * make_right_shifted_expr
-  (expressionS *, const int, const int);
+static expressionS * make_right_shifted_expr(expressionS *, const int, const int);
 
 static unsigned long gas_cgen_encode_addend
   (const unsigned long, const unsigned long, const unsigned long, \
