@@ -923,11 +923,9 @@ EXCEPT_H = except.h $(HASHTAB_H)
 TARGET_DEF = target.def target-hooks-macros.h target-insns.def
 C_TARGET_DEF = c-family/c-target.def target-hooks-macros.h
 COMMON_TARGET_DEF = common/common-target.def target-hooks-macros.h
-D_TARGET_DEF = d/d-target.def target-hooks-macros.h
 TARGET_H = $(TM_H) target.h $(TARGET_DEF) insn-modes.h insn-codes.h
 C_TARGET_H = c-family/c-target.h $(C_TARGET_DEF)
 COMMON_TARGET_H = common/common-target.h $(INPUT_H) $(COMMON_TARGET_DEF)
-D_TARGET_H = d/d-target.h $(D_TARGET_DEF)
 MACHMODE_H = machmode.h mode-classes.def
 HOOKS_H = hooks.h
 HOSTHOOKS_DEF_H = hosthooks-def.h $(HOOKS_H)
@@ -1032,7 +1030,6 @@ RTL_SSA_H = $(PRETTY_PRINT_H) insn-config.h splay-tree-utils.h \
 	    rtl-ssa/access-utils.h rtl-ssa/insn-utils.h rtl-ssa/movement.h \
 	    rtl-ssa/change-utils.h rtl-ssa/member-fns.inl
 
-#
 # Now figure out from those variables how to compile and link.
 
 # IN_GCC distinguishes between code compiled into GCC itself and other
@@ -1213,7 +1210,7 @@ FLAGS_TO_PASS = \
 	"datadir=$(datadir)" \
 	"libsubdir=$(libsubdir)" \
 	"localedir=$(localedir)"
-#
+
 # Lists of files for various purposes.
 
 # All option source files
@@ -1806,10 +1803,9 @@ $(FULL_DRIVER_NAME): ./xgcc$(exeext)
 	rm -f $@
 	$(LN_S) $< $@
 
-#
 # SELFTEST_DEPS need to be set before including language makefile fragments.
 # Otherwise $(SELFTEST_DEPS) is empty when used from <LANG>/Make-lang.in.
-SELFTEST_DEPS = $(GCC_PASSES) stmp-int-hdrs $(srcdir)/testsuite/selftests
+SELFTEST_DEPS = $(GCC_PASSES) stmp-int-hdrs
 
 DO_LINK_SERIALIZATION = @DO_LINK_SERIALIZATION@
 
@@ -2072,7 +2068,7 @@ start.encap: native xgcc$(exeext) cpp$(exeext) specs \
 rest.encap: lang.rest.encap
 # This is what is made with the host's compiler
 # whether making a cross compiler or not.
-native: config.status auto-host.h build-@POSUB@ $(LANGUAGES) \
+native: config.status auto-host.h $(LANGUAGES) \
 	$(EXTRA_PROGRAMS) $(COLLECT2) lto-wrapper$(exeext) \
 	gcc-ar$(exeext) gcc-nm$(exeext) gcc-ranlib$(exeext)
 
@@ -2096,8 +2092,7 @@ rest.cross: specs
 # Specify the path to gcc/testsuite/selftests within the srcdir
 # as an argument to -fself-test.
 DEVNULL=$(if $(findstring mingw,$(build)),nul,/dev/null)
-SELFTEST_FLAGS = -nostdinc $(DEVNULL) -S -o $(DEVNULL) \
-	-fself-test=$(srcdir)/testsuite/selftests
+SELFTEST_FLAGS = -nostdinc $(DEVNULL) -S -o $(DEVNULL)
 
 # Run the selftests during the build once we have a driver and the frontend,
 # so that self-test failures are caught as early as possible.
@@ -2171,7 +2166,7 @@ checksum-options:
 	echo "$(LINKER) $(ALL_LINKERFLAGS) $(LDFLAGS)" > checksum-options.tmp \
 	&& $(srcdir)/../move-if-change checksum-options.tmp checksum-options
 
-#
+
 # Build libgcc.a.
 
 libgcc-support: libgcc.mvars stmp-int-hdrs $(TCONFIG_H) \
@@ -2218,7 +2213,7 @@ s-mlib: $(srcdir)/genmultilib Makefile
 	fi
 	$(SHELL) $(srcdir)/../move-if-change tmp-mlib.h multilib.h
 	$(STAMP) s-mlib
-#
+
 # Compiling object files from source files.
 
 # Note that dependencies on obstack.h are not written
@@ -2394,7 +2389,7 @@ $(out_object_file): $(out_file)
 $(common_out_object_file): $(common_out_file)
 	$(COMPILE) $<
 	$(POSTCOMPILE)
-#
+
 # Generate header and source files from the machine description,
 # and compile them.
 
@@ -2600,50 +2595,6 @@ s-common-target-hooks-def-h: build/genhooks$(build_exeext)
 					     common/common-target-hooks-def.h
 	$(STAMP) s-common-target-hooks-def-h
 
-d/d-target-hooks-def.h: s-d-target-hooks-def-h; @true
-
-s-d-target-hooks-def-h: build/genhooks$(build_exeext)
-	$(RUN_GEN) build/genhooks$(build_exeext) "D Target Hook" \
-					     > tmp-d-target-hooks-def.h
-	$(SHELL) $(srcdir)/../move-if-change tmp-d-target-hooks-def.h \
-					     d/d-target-hooks-def.h
-	$(STAMP) s-d-target-hooks-def-h
-
-# check if someone mistakenly only changed tm.texi.
-# We use a different pathname here to avoid a circular dependency.
-s-tm-texi: $(srcdir)/doc/../doc/tm.texi
-
-# The tm.texi we want to compare against / check into svn should have
-# unix-style line endings.  To make this work on MinGW, remove \r.
-# \r is not portable to Solaris tr, therefore we have a special
-# case for ASCII.  We use \r for other encodings like EBCDIC.
-s-tm-texi: build/genhooks$(build_exeext) $(srcdir)/doc/tm.texi.in
-	$(RUN_GEN) build/genhooks$(build_exeext) -d \
-			$(srcdir)/doc/tm.texi.in > tmp-tm.texi
-	case `echo X|tr X '\101'` in \
-	  A) tr -d '\015' < tmp-tm.texi > tmp2-tm.texi ;; \
-	  *) tr -d '\r' < tmp-tm.texi > tmp2-tm.texi ;; \
-	esac
-	mv tmp2-tm.texi tmp-tm.texi
-	$(SHELL) $(srcdir)/../move-if-change tmp-tm.texi tm.texi
-	@if cmp -s $(srcdir)/doc/tm.texi tm.texi; then \
-	  $(STAMP) $@; \
-	elif test $(srcdir)/doc/tm.texi -nt $(srcdir)/doc/tm.texi.in \
-	  && ( test $(srcdir)/doc/tm.texi -nt $(srcdir)/target.def \
-	    || test $(srcdir)/doc/tm.texi -nt $(srcdir)/c-family/c-target.def \
-	    || test $(srcdir)/doc/tm.texi -nt $(srcdir)/common/common-target.def \
-	    || test $(srcdir)/doc/tm.texi -nt $(srcdir)/d/d-target.def \
-	  ); then \
-	  echo >&2 ; \
-	  echo You should edit $(srcdir)/doc/tm.texi.in rather than $(srcdir)/doc/tm.texi . >&2 ; \
-	  false; \
-	else \
-	  echo >&2 ; \
-	  echo Verify that you have permission to grant a GFDL license for all >&2 ; \
-	  echo new text in $(objdir)/tm.texi, then copy it to $(srcdir)/doc/tm.texi. >&2 ; \
-	  false; \
-	fi
-
 gimple-match.cc: s-match gimple-match-head.cc ; @true
 generic-match.cc: s-match generic-match-head.cc ; @true
 
@@ -2790,11 +2741,10 @@ generated_files = config.h tm.h $(TM_P_H) $(TM_D_H) $(TM_H) multilib.h \
        options.h target-hooks-def.h insn-opinit.h \
        common/common-target-hooks-def.h pass-instances.def \
        gimple-match.cc generic-match.cc \
-       c-family/c-target-hooks-def.h d/d-target-hooks-def.h \
+       c-family/c-target-hooks-def.h \
        case-cfn-macros.h \
        cfn-operators.pd omp-device-properties.h
 
-#
 # How to compile object files to run on the build machine.
 
 build/%.o :  # dependencies provided by explicit rule later
@@ -3107,7 +3057,7 @@ libgcov-merge-tool.o: $(srcdir)/../libgcc/libgcov-merge.c $(GCOV_TOOL_DEP_FILES)
 GCOV_TOOL_OBJS = gcov-tool.o libgcov-util.o libgcov-driver-tool.o libgcov-merge-tool.o
 gcov-tool$(exeext): $(GCOV_TOOL_OBJS) $(LIBDEPS)
 	+$(LINKER) $(ALL_LINKERFLAGS) $(LDFLAGS) $(GCOV_TOOL_OBJS) $(LIBS) -o $@
-#
+
 # Build the include directories.  The stamp files are stmp-* rather than
 # s-* so that mostlyclean does not force the include directory to
 # be rebuilt.
@@ -3277,7 +3227,6 @@ stmp-fixinc: gsyslimits.h macro_list fixinc_list \
 	  done; \
 	fi
 	$(STAMP) stmp-fixinc
-#
 
 # Install with the gcc headers files, not the fixed include files, which we
 # are typically not allowed to distribute.  The general idea is to:
@@ -3314,198 +3263,6 @@ install-no-fixedincludes:
 	-rm -rf include; mv tmp-include include 2>/dev/null
 	-rm -rf include-fixed; mv tmp-include-fixed include-fixed 2>/dev/null
 
-# Remake the info files.
-
-doc: $(BUILD_INFO) $(GENERATED_MANPAGES)
-
-INFOFILES = doc/cpp.info doc/gcc.info doc/gccint.info \
-            doc/gccinstall.info doc/cppinternals.info
-
-info: $(INFOFILES) lang.info @GENINSRC@ srcinfo lang.srcinfo
-
-srcinfo: $(INFOFILES)
-	-cp -p $^ $(srcdir)/doc
-
-TEXI_CPP_FILES = cpp.texi fdl.texi cppenv.texi cppopts.texi		\
-	 gcc-common.texi gcc-vers.texi
-
-TEXI_GCC_FILES = gcc.texi gcc-common.texi gcc-vers.texi frontends.texi	\
-	 standards.texi invoke.texi extend.texi md.texi objc.texi	\
-	 gcov.texi trouble.texi bugreport.texi service.texi		\
-	 contribute.texi compat.texi funding.texi gnu.texi gpl_v3.texi	\
-	 fdl.texi contrib.texi cppenv.texi cppopts.texi avr-mmcu.texi	\
-	 implement-c.texi implement-cxx.texi gcov-tool.texi gcov-dump.texi \
-	 lto-dump.texi
-
-# we explicitly use $(srcdir)/doc/tm.texi here to avoid confusion with
-# the generated tm.texi; the latter might have a more recent timestamp,
-# but we don't want to rebuild the info files unless the contents of
-# the *.texi files have changed.
-TEXI_GCCINT_FILES = gccint.texi gcc-common.texi gcc-vers.texi		\
-	 contribute.texi makefile.texi configterms.texi options.texi	\
-	 portability.texi interface.texi passes.texi rtl.texi md.texi	\
-	 $(srcdir)/doc/tm.texi hostconfig.texi fragments.texi	\
-	 configfiles.texi collect2.texi headerdirs.texi funding.texi	\
-	 gnu.texi gpl_v3.texi fdl.texi contrib.texi languages.texi	\
-	 sourcebuild.texi gty.texi libgcc.texi cfg.texi tree-ssa.texi	\
-	 loop.texi generic.texi gimple.texi plugins.texi optinfo.texi   \
-	 match-and-simplify.texi analyzer.texi ux.texi poly-int.texi
-
-TEXI_GCCINSTALL_FILES = install.texi fdl.texi		\
-	 gcc-common.texi gcc-vers.texi
-
-TEXI_CPPINT_FILES = cppinternals.texi gcc-common.texi gcc-vers.texi
-
-# gcc-vers.texi is generated from the version files.
-gcc-vers.texi: $(BASEVER) $(DEVPHASE)
-	(echo "@set version-GCC $(BASEVER_c)"; \
-	 if [ "$(DEVPHASE_c)" = "experimental" ]; \
-	 then echo "@set DEVELOPMENT"; \
-	 else echo "@clear DEVELOPMENT"; \
-	 fi) > $@T
-	$(build_file_translate) echo @set srcdir `echo $(abs_srcdir) | sed -e 's|\\([@{}]\\)|@\\1|g'` >> $@T
-	if [ -n "$(PKGVERSION)" ]; then \
-	  echo "@set VERSION_PACKAGE $(PKGVERSION)" >> $@T; \
-	fi
-	echo "@set BUGURL $(BUGURL_TEXI)" >> $@T; \
-	mv -f $@T $@
-
-
-# The *.1, *.7, *.info, *.dvi, and *.pdf files are being generated from implicit
-# patterns.  To use them, put each of the specific targets with its
-# specific dependencies but no build commands.
-
-doc/cpp.info: $(TEXI_CPP_FILES)
-doc/gcc.info: $(TEXI_GCC_FILES)
-doc/gccint.info: $(TEXI_GCCINT_FILES)
-doc/cppinternals.info: $(TEXI_CPPINT_FILES)
-
-doc/%.info: %.texi
-	if [ x$(BUILD_INFO) = xinfo ]; then \
-		$(MAKEINFO) $(MAKEINFOFLAGS) -I . -I $(gcc_docdir) \
-			-I $(gcc_docdir)/include -o $@ $<; \
-	fi
-
-# Duplicate entry to handle renaming of gccinstall.info
-doc/gccinstall.info: $(TEXI_GCCINSTALL_FILES)
-	if [ x$(BUILD_INFO) = xinfo ]; then \
-		$(MAKEINFO) $(MAKEINFOFLAGS) -I $(gcc_docdir) \
-			-I $(gcc_docdir)/include -o $@ $<; \
-	fi
-
-doc/cpp.dvi: $(TEXI_CPP_FILES)
-doc/gcc.dvi: $(TEXI_GCC_FILES)
-doc/gccint.dvi: $(TEXI_GCCINT_FILES)
-doc/cppinternals.dvi: $(TEXI_CPPINT_FILES)
-
-doc/cpp.pdf: $(TEXI_CPP_FILES)
-doc/gcc.pdf: $(TEXI_GCC_FILES)
-doc/gccint.pdf: $(TEXI_GCCINT_FILES)
-doc/cppinternals.pdf: $(TEXI_CPPINT_FILES)
-
-$(build_htmldir)/cpp/index.html: $(TEXI_CPP_FILES)
-$(build_htmldir)/gcc/index.html: $(TEXI_GCC_FILES)
-$(build_htmldir)/gccint/index.html: $(TEXI_GCCINT_FILES)
-$(build_htmldir)/cppinternals/index.html: $(TEXI_CPPINT_FILES)
-
-DVIFILES = doc/gcc.dvi doc/gccint.dvi doc/gccinstall.dvi doc/cpp.dvi \
-           doc/cppinternals.dvi
-
-dvi:: $(DVIFILES) lang.dvi
-
-doc/%.dvi: %.texi
-	$(TEXI2DVI) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
-
-# Duplicate entry to handle renaming of gccinstall.dvi
-doc/gccinstall.dvi: $(TEXI_GCCINSTALL_FILES)
-	$(TEXI2DVI) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
-
-PDFFILES = doc/gcc.pdf doc/gccint.pdf doc/gccinstall.pdf doc/cpp.pdf \
-           doc/cppinternals.pdf
-
-pdf:: $(PDFFILES) lang.pdf
-
-doc/%.pdf: %.texi
-	$(TEXI2PDF) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
-
-# Duplicate entry to handle renaming of gccinstall.pdf
-doc/gccinstall.pdf: $(TEXI_GCCINSTALL_FILES)
-	$(TEXI2PDF) -I . -I $(abs_docdir) -I $(abs_docdir)/include -o $@ $<
-
-# List the directories or single hmtl files which are installed by
-# install-html. The lang.html file triggers language fragments to build
-# html documentation.
-HTMLS_INSTALL=$(build_htmldir)/cpp $(build_htmldir)/gcc \
-       $(build_htmldir)/gccinstall $(build_htmldir)/gccint \
-       $(build_htmldir)/cppinternals
-
-# List the html file targets.
-HTMLS_BUILD=$(build_htmldir)/cpp/index.html $(build_htmldir)/gcc/index.html \
-       $(build_htmldir)/gccinstall/index.html $(build_htmldir)/gccint/index.html \
-       $(build_htmldir)/cppinternals/index.html lang.html
-
-html:: $(HTMLS_BUILD)
-
-$(build_htmldir)/%/index.html: %.texi
-	$(mkinstalldirs) $(@D)
-	rm -f $(@D)/*
-	$(TEXI2HTML) -I $(abs_docdir) -I $(abs_docdir)/include -o $(@D) $<
-
-# Duplicate entry to handle renaming of gccinstall
-$(build_htmldir)/gccinstall/index.html: $(TEXI_GCCINSTALL_FILES)
-	$(mkinstalldirs) $(@D)
-	echo rm -f $(@D)/*
-	SOURCEDIR=$(abs_docdir) \
-	DESTDIR=$(@D) \
-	$(SHELL) $(srcdir)/doc/install.texi2html
-
-MANFILES = doc/gcov.1 doc/cpp.1 doc/gcc.1 doc/gfdl.7 doc/gpl.7 \
-           doc/fsf-funding.7 doc/gcov-tool.1 doc/gcov-dump.1 \
-	   $(if $(filter yes,@enable_lto@),doc/lto-dump.1)
-
-generated-manpages: man
-
-man: $(MANFILES) lang.man @GENINSRC@ srcman lang.srcman
-
-srcman: $(MANFILES)
-	-cp -p $^ $(srcdir)/doc
-
-doc/%.1: %.pod
-	$(STAMP) $@
-	-($(POD2MAN) --section=1 $< > $(@).T$$$$ && \
-		mv -f $(@).T$$$$ $@) || \
-		(rm -f $(@).T$$$$ && exit 1)
-
-doc/%.7: %.pod
-	$(STAMP) $@
-	-($(POD2MAN) --section=7 $< > $(@).T$$$$ && \
-		mv -f $(@).T$$$$ $@) || \
-		(rm -f $(@).T$$$$ && exit 1)
-
-%.pod: %.texi
-	$(STAMP) $@
-	-$(TEXI2POD) -DBUGURL="$(BUGURL_TEXI)" $< > $@
-
-.INTERMEDIATE: cpp.pod gcc.pod gfdl.pod fsf-funding.pod gpl.pod
-cpp.pod: cpp.texi cppenv.texi cppopts.texi
-
-# These next rules exist because the output name is not the same as
-# the input name, so our implicit %.pod rule will not work.
-
-gcc.pod: invoke.texi cppenv.texi cppopts.texi gcc-vers.texi
-	$(STAMP) $@
-	-$(TEXI2POD) $< > $@
-gfdl.pod: fdl.texi
-	$(STAMP) $@
-	-$(TEXI2POD) $< > $@
-fsf-funding.pod: funding.texi
-	$(STAMP) $@
-	-$(TEXI2POD) $< > $@
-gpl.pod: gpl_v3.texi
-	$(STAMP) $@
-	-$(TEXI2POD) $< > $@
-
-#
 # Deletion of files made during compilation.
 # There are four levels of this:
 #   `mostlyclean', `clean', `distclean' and `maintainer-clean'.
@@ -3606,7 +3363,7 @@ maintainer-clean:
 	-rm -f cpp.??s cpp.*aux
 	-rm -f gcc.??s gcc.*aux
 	-rm -f $(gcc_docdir)/*.info $(gcc_docdir)/*.1 $(gcc_docdir)/*.7 $(gcc_docdir)/*.dvi $(gcc_docdir)/*.pdf
-#
+	
 # Entry points `install', `install-strip', and `uninstall'.
 # Also use `install-collect2' to install collect2 when the config files don't.
 
@@ -3614,7 +3371,7 @@ maintainer-clean:
 # Install the driver last so that the window when things are
 # broken is small.
 install: install-common $(INSTALL_HEADERS) \
-    install-cpp install-man install-info install-@POSUB@ \
+    install-cpp install-man install-info \
     install-driver install-lto-wrapper install-gcc-ar
 
 ifeq ($(enable_plugin),yes)
@@ -3795,122 +3552,6 @@ install-driver: installdirs xgcc$(exeext)
 	  fi; \
 	fi
 
-# Install the info files.
-# $(INSTALL_DATA) might be a relative pathname, so we can't cd into srcdir
-# to do the install.
-install-info:: doc installdirs \
-	$(DESTDIR)$(infodir)/cpp.info \
-	$(DESTDIR)$(infodir)/gcc.info \
-	$(DESTDIR)$(infodir)/cppinternals.info \
-	$(DESTDIR)$(infodir)/gccinstall.info \
-	$(DESTDIR)$(infodir)/gccint.info \
-	lang.install-info
-
-$(DESTDIR)$(infodir)/%.info: doc/%.info installdirs
-	rm -f $@
-	if [ -f $< ]; then \
-	  for f in $(<)*; do \
-	    realfile=`echo $$f | sed -e 's|.*/\([^/]*\)$$|\1|'`; \
-	    $(INSTALL_DATA) $$f $(DESTDIR)$(infodir)/$$realfile; \
-	    chmod a-x $(DESTDIR)$(infodir)/$$realfile; \
-	  done; \
-	else true; fi
-	-if $(SHELL) -c 'install-info --version' >/dev/null 2>&1; then \
-	  if [ -f $@ ]; then \
-	    install-info --dir-file=$(DESTDIR)$(infodir)/dir $@; \
-	  else true; fi; \
-	else true; fi;
-
-dvi__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-
-install-dvi: $(DVIFILES) lang.install-dvi
-	@$(NORMAL_INSTALL)
-	test -z "$(dvidir)/gcc" || $(mkinstalldirs) "$(DESTDIR)$(dvidir)/gcc"
-	@list='$(DVIFILES)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(dvi__strip_dir) \
-	  echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(dvidir)/gcc/$$f'"; \
-	  $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(dvidir)/gcc/$$f"; \
-	done
-
-pdf__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-
-install-pdf: $(PDFFILES) lang.install-pdf
-	@$(NORMAL_INSTALL)
-	test -z "$(pdfdir)/gcc" || $(mkinstalldirs) "$(DESTDIR)$(pdfdir)/gcc"
-	@list='$(PDFFILES)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(pdf__strip_dir) \
-	  echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(pdfdir)/gcc/$$f'"; \
-	  $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(pdfdir)/gcc/$$f"; \
-	done
-
-html__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-
-install-html: $(HTMLS_BUILD) lang.install-html
-	@$(NORMAL_INSTALL)
-	test -z "$(htmldir)" || $(mkinstalldirs) "$(DESTDIR)$(htmldir)"
-	@list='$(HTMLS_INSTALL)'; for p in $$list; do \
-	  if test -f "$$p" || test -d "$$p"; then d=""; else d="$(srcdir)/"; fi; \
-	  f=$(html__strip_dir) \
-	  if test -d "$$d$$p"; then \
-	    echo " $(mkinstalldirs) '$(DESTDIR)$(htmldir)/$$f'"; \
-	    $(mkinstalldirs) "$(DESTDIR)$(htmldir)/$$f" || exit 1; \
-	    echo " $(INSTALL_DATA) '$$d$$p'/* '$(DESTDIR)$(htmldir)/$$f'"; \
-	    $(INSTALL_DATA) "$$d$$p"/* "$(DESTDIR)$(htmldir)/$$f"; \
-	  else \
-	    echo " $(INSTALL_DATA) '$$d$$p' '$(DESTDIR)$(htmldir)/$$f'"; \
-	    $(INSTALL_DATA) "$$d$$p" "$(DESTDIR)$(htmldir)/$$f"; \
-	  fi; \
-	done
-
-# Install the man pages.
-install-man: lang.install-man \
-	$(DESTDIR)$(man1dir)/$(GCC_INSTALL_NAME)$(man1ext) \
-	$(DESTDIR)$(man1dir)/$(CPP_INSTALL_NAME)$(man1ext) \
-	$(DESTDIR)$(man1dir)/$(GCOV_INSTALL_NAME)$(man1ext) \
-	$(DESTDIR)$(man1dir)/$(GCOV_TOOL_INSTALL_NAME)$(man1ext) \
-	$(DESTDIR)$(man1dir)/$(GCOV_DUMP_INSTALL_NAME)$(man1ext) \
-	$(if $(filter yes,@enable_lto@),$(DESTDIR)$(man1dir)/$(LTO_DUMP_INSTALL_NAME)$(man1ext)) \
-	$(DESTDIR)$(man7dir)/fsf-funding$(man7ext) \
-	$(DESTDIR)$(man7dir)/gfdl$(man7ext) \
-	$(DESTDIR)$(man7dir)/gpl$(man7ext)
-
-$(DESTDIR)$(man7dir)/%$(man7ext): doc/%.7 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
-$(DESTDIR)$(man1dir)/$(GCC_INSTALL_NAME)$(man1ext): doc/gcc.1 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
-$(DESTDIR)$(man1dir)/$(CPP_INSTALL_NAME)$(man1ext): doc/cpp.1 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
-$(DESTDIR)$(man1dir)/$(GCOV_INSTALL_NAME)$(man1ext): doc/gcov.1 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
-$(DESTDIR)$(man1dir)/$(GCOV_TOOL_INSTALL_NAME)$(man1ext): doc/gcov-tool.1 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
-$(DESTDIR)$(man1dir)/$(GCOV_DUMP_INSTALL_NAME)$(man1ext): doc/gcov-dump.1 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
-$(DESTDIR)$(man1dir)/$(LTO_DUMP_INSTALL_NAME)$(man1ext): doc/lto-dump.1 installdirs
-	-rm -f $@
-	-$(INSTALL_DATA) $< $@
-	-chmod a-x $@
-
 # Install all the header files built in the include subdirectory.
 install-headers: $(INSTALL_HEADERS_DIR)
 # Fix symlinks to absolute paths in the installed include directory to
@@ -4050,290 +3691,6 @@ uninstall: lang.uninstall
 	  rm -f $(DESTDIR)$(bindir)/$$install_name ; \
 	  rm -f $(DESTDIR)$(bindir)/$$target_install_name ; \
 	done
-#
-# These targets are for the dejagnu testsuites. The file site.exp
-# contains global variables that all the testsuites will use.
-
-target_subdir = @target_subdir@
-
-site.exp: ./config.status Makefile
-	@echo "Making a new config file..."
-	-@rm -f ./site.tmp
-	@$(STAMP) site.exp
-	-@mv site.exp site.bak
-	@echo "## these variables are automatically generated by make ##" > ./site.tmp
-	@echo "# Do not edit here. If you wish to override these values" >> ./site.tmp
-	@echo "# add them to the last section" >> ./site.tmp
-	@echo "set rootme \"`${PWD_COMMAND}`\"" >> ./site.tmp
-	@echo "set srcdir \"`cd ${srcdir}; ${PWD_COMMAND}`\"" >> ./site.tmp
-	@echo "set host_triplet $(host)" >> ./site.tmp
-	@echo "set build_triplet $(build)" >> ./site.tmp
-	@echo "set target_triplet $(target)" >> ./site.tmp
-	@echo "set target_alias $(target_noncanonical)" >> ./site.tmp
-	@echo "set libiconv \"$(LIBICONV)\"" >> ./site.tmp
-# CFLAGS is set even though it's empty to show we reserve the right to set it.
-	@echo "set CFLAGS \"\"" >> ./site.tmp
-	@echo "set CXXFLAGS \"\"" >> ./site.tmp
-	@echo "set HOSTCC \"$(CC)\"" >> ./site.tmp
-	@echo "set HOSTCXX \"$(CXX)\"" >> ./site.tmp
-	@echo "set HOSTCFLAGS \"$(CFLAGS)\"" >> ./site.tmp
-	@echo "set HOSTCXXFLAGS \"$(CXXFLAGS)\"" >> ./site.tmp
-# TEST_ALWAYS_FLAGS are flags that should be passed to every compilation.
-# They are passed first to allow individual tests to override them.
-	@echo "set TEST_ALWAYS_FLAGS \"$(SYSROOT_CFLAGS_FOR_TARGET)\"" >> ./site.tmp
-# When running the tests we set GCC_EXEC_PREFIX to the install tree so that
-# files that have already been installed there will be found.  The -B option
-# overrides it, so use of GCC_EXEC_PREFIX will not result in using GCC files
-# from the install tree.
-	@echo "set TEST_GCC_EXEC_PREFIX \"$(libdir)/gcc/\"" >> ./site.tmp
-	@echo "set TESTING_IN_BUILD_TREE 1" >> ./site.tmp
-	@echo "set HAVE_LIBSTDCXX_V3 1" >> ./site.tmp
-	@if test "@enable_plugin@" = "yes" ; then \
-	  echo "set ENABLE_PLUGIN 1" >> ./site.tmp; \
-	  echo "set PLUGINCC \"$(PLUGINCC)\"" >> ./site.tmp; \
-	  echo "set PLUGINCFLAGS \"$(PLUGINCFLAGS)\"" >> ./site.tmp; \
-	  echo "set GMPINC \"$(GMPINC)\"" >> ./site.tmp; \
-	fi
-# If newlib has been configured, we need to pass -B to gcc so it can find
-# newlib's crt0.o if it exists.  This will cause a "path prefix not used"
-# message if it doesn't, but the testsuite is supposed to ignore the message -
-# it's too difficult to tell when to and when not to pass -B (not all targets
-# have crt0's).  We could only add the -B if ../newlib/crt0.o exists, but that
-# seems like too selective a test.
-# ??? Another way to solve this might be to rely on linker scripts.  Then
-# theoretically the -B won't be needed.
-# We also need to pass -L ../ld so that the linker can find ldscripts.
-	@if [ -d $(objdir)/../$(target_subdir)/newlib ] \
-	    && [ "${host}" != "${target}" ]; then \
-	  echo "set newlib_cflags \"-I$(objdir)/../$(target_subdir)/newlib/targ-include -I\$$srcdir/../newlib/libc/include\"" >> ./site.tmp; \
-	  echo "set newlib_ldflags \"-B$(objdir)/../$(target_subdir)/newlib/\"" >> ./site.tmp; \
-	  echo "append CFLAGS \" \$$newlib_cflags\"" >> ./site.tmp; \
-	  echo "append CXXFLAGS \" \$$newlib_cflags\"" >> ./site.tmp; \
-	  echo "append LDFLAGS \" \$$newlib_ldflags\"" >> ./site.tmp; \
-	else true; \
-	fi
-	@if [ -d $(objdir)/../ld ] ; then \
-	  echo "append LDFLAGS \" -L$(objdir)/../ld\"" >> ./site.tmp; \
-	else true; \
-	fi
-	echo "set tmpdir $(objdir)/testsuite" >> ./site.tmp
-	@echo "set srcdir \"\$${srcdir}/testsuite\"" >> ./site.tmp
-	@if [ "X$(ALT_CC_UNDER_TEST)" != "X" ] ; then \
-	  echo "set ALT_CC_UNDER_TEST \"$(ALT_CC_UNDER_TEST)\"" >> ./site.tmp; \
-	else true; \
-	fi
-	@if [ "X$(ALT_CXX_UNDER_TEST)" != "X" ] ; then \
-	  echo "set ALT_CXX_UNDER_TEST \"$(ALT_CXX_UNDER_TEST)\"" >> ./site.tmp; \
-	else true; \
-	fi
-	@if [ "X$(COMPAT_OPTIONS)" != "X" ] ; then \
-	  echo "set COMPAT_OPTIONS \"$(COMPAT_OPTIONS)\"" >> ./site.tmp; \
-	else true; \
-	fi
-	@echo "## All variables above are generated by configure. Do Not Edit ##" >> ./site.tmp
-	@cat ./site.tmp > site.exp
-	@cat site.bak | sed \
-		-e '1,/^## All variables above are.*##/ d' >> site.exp
-	-@rm -f ./site.tmp
-
-CHECK_TARGETS = @check_languages@
-
-check: $(CHECK_TARGETS)
-
-check-subtargets: $(patsubst %,%-subtargets,$(CHECK_TARGETS))
-
-# The idea is to parallelize testing of multilibs, for example:
-#   make -j3 check-gcc//sh-hms-sim/{-m1,-m2,-m3,-m3e,-m4}/{,-nofpu}
-# will run 3 concurrent sessions of check-gcc, eventually testing
-# all 10 combinations.  GNU make is required, as is a shell that expands
-# alternations within braces.
-lang_checks_parallel = $(lang_checks:=//%)
-$(lang_checks_parallel): site.exp
-	target=`echo "$@" | sed 's,//.*,,'`; \
-	variant=`echo "$@" | sed 's,^[^/]*//,,'`; \
-	vardots=`echo "$$variant" | sed 's,/,.,g'`; \
-	$(MAKE) TESTSUITEDIR="testsuite.$$vardots" \
-	  RUNTESTFLAGS="--target_board=$$variant $(RUNTESTFLAGS)" \
-	  "$$target"
-
-TESTSUITEDIR = testsuite
-
-$(TESTSUITEDIR)/site.exp: site.exp
-	-test -d $(TESTSUITEDIR) || mkdir $(TESTSUITEDIR)
-	-rm -f $@
-	sed '/set tmpdir/ s|testsuite$$|$(TESTSUITEDIR)|' < site.exp > $@
-
-# This is only used for check-% targets that aren't parallelized.
-$(filter-out $(lang_checks_parallelized),$(lang_checks)): check-% : site.exp
-	-test -d plugin || mkdir plugin
-	-test -d $(TESTSUITEDIR) || mkdir $(TESTSUITEDIR)
-	test -d $(TESTSUITEDIR)/$* || mkdir $(TESTSUITEDIR)/$*
-	-(rootme=`${PWD_COMMAND}`; export rootme; \
-	srcdir=`cd ${srcdir}; ${PWD_COMMAND}` ; export srcdir ; \
-	cd $(TESTSUITEDIR)/$*; \
-	rm -f tmp-site.exp; \
-	sed '/set tmpdir/ s|testsuite$$|$(TESTSUITEDIR)/$*|' \
-		< ../../site.exp > tmp-site.exp; \
-	$(SHELL) $${srcdir}/../move-if-change tmp-site.exp site.exp; \
-	EXPECT=${EXPECT} ; export EXPECT ; \
-	if [ -f $${rootme}/../expect/expect ] ; then  \
-	   TCL_LIBRARY=`cd .. ; cd $${srcdir}/../tcl/library ; ${PWD_COMMAND}` ; \
-	    export TCL_LIBRARY ; fi ; \
-	$(RUNTEST) --tool $* $(RUNTESTFLAGS))
-
-$(patsubst %,%-subtargets,$(lang_checks)): check-%-subtargets:
-	@echo check-$*
-
-check_p_tool=$(firstword $(subst _, ,$*))
-check_p_count=$(check_$(check_p_tool)_parallelize)
-check_p_subno=$(word 2,$(subst _, ,$*))
-check_p_numbers0:=1 2 3 4 5 6 7 8 9
-check_p_numbers1:=0 $(check_p_numbers0)
-check_p_numbers2:=$(foreach i,$(check_p_numbers0),$(addprefix $(i),$(check_p_numbers1)))
-check_p_numbers3:=$(addprefix 0,$(check_p_numbers1)) $(check_p_numbers2)
-check_p_numbers4:=$(foreach i,$(check_p_numbers0),$(addprefix $(i),$(check_p_numbers3)))
-check_p_numbers5:=$(addprefix 0,$(check_p_numbers3)) $(check_p_numbers4)
-check_p_numbers6:=$(foreach i,$(check_p_numbers0),$(addprefix $(i),$(check_p_numbers5)))
-check_p_numbers:=$(check_p_numbers0) $(check_p_numbers2) $(check_p_numbers4) $(check_p_numbers6)
-check_p_subdir=$(subst _,,$*)
-check_p_subdirs=$(wordlist 1,$(check_p_count),$(wordlist 1, \
-		$(if $(GCC_TEST_PARALLEL_SLOTS),$(GCC_TEST_PARALLEL_SLOTS),128), \
-		$(check_p_numbers)))
-
-# For parallelized check-% targets, this decides whether parallelization
-# is desirable (if -jN is used).  If desirable, recursive make is run with
-# check-parallel-$lang{,1,2,3,4,5} etc. goals, which can be executed in
-# parallel, as they are run in separate directories.
-# check-parallel-$lang{,1,2,3,4,5} etc. goals invoke runtest with
-# GCC_RUNTEST_PARALLELIZE_DIR var in the environment and runtest_file_p
-# dejaGNU procedure is overridden to additionally synchronize through
-# a $lang-parallel directory which tests will be run by which runtest instance.
-# Afterwards contrib/dg-extract-results.sh is used to merge the sum and log
-# files.  If parallelization isn't desirable, only one recursive make
-# is run with check-parallel-$lang goal and check_$lang_parallelize variable
-# cleared to say that no additional arguments beyond $(RUNTESTFLAGS)
-# should be passed to runtest.
-#
-# To parallelize some language check, add the corresponding check-$lang
-# to lang_checks_parallelized variable and define check_$lang_parallelize
-# variable.  This is the upper limit to which it is useful to parallelize the
-# check-$lang target.  It doesn't make sense to try e.g. 128 goals for small
-# testsuites like objc or go.
-$(lang_checks_parallelized): check-% : site.exp
-	-rm -rf $(TESTSUITEDIR)/$*-parallel
-	@if [ -n "$(filter -j%, $(MFLAGS))" ]; then \
-	  test -d $(TESTSUITEDIR) || mkdir $(TESTSUITEDIR) || true; \
-	  test -d $(TESTSUITEDIR)/$*-parallel || mkdir $(TESTSUITEDIR)/$*-parallel || true; \
-	  GCC_RUNTEST_PARALLELIZE_DIR=`${PWD_COMMAND}`/$(TESTSUITEDIR)/$(check_p_tool)-parallel ; \
-	  export GCC_RUNTEST_PARALLELIZE_DIR ; \
-	  $(MAKE) TESTSUITEDIR="$(TESTSUITEDIR)" RUNTESTFLAGS="$(RUNTESTFLAGS)" \
-	    check-parallel-$* \
-	    $(patsubst %,check-parallel-$*_%, $(check_p_subdirs)); \
-	  sums= ; logs= ; \
-	  for dir in $(TESTSUITEDIR)/$* \
-		     $(patsubst %,$(TESTSUITEDIR)/$*%,$(check_p_subdirs));\
-	  do \
-	    if [ -d $$dir ]; then \
-	      mv -f $$dir/$*.sum $$dir/$*.sum.sep; mv -f $$dir/$*.log $$dir/$*.log.sep; \
-	      sums="$$sums $$dir/$*.sum.sep"; logs="$$logs $$dir/$*.log.sep"; \
-	    fi; \
-	  done; \
-	  $(SHELL) $(srcdir)/../contrib/dg-extract-results.sh $$sums \
-	    > $(TESTSUITEDIR)/$*/$*.sum; \
-	  $(SHELL) $(srcdir)/../contrib/dg-extract-results.sh -L $$logs \
-	    > $(TESTSUITEDIR)/$*/$*.log; \
-	  rm -rf $(TESTSUITEDIR)/$*-parallel || true; \
-	else \
-	  $(MAKE) TESTSUITEDIR="$(TESTSUITEDIR)" RUNTESTFLAGS="$(RUNTESTFLAGS)" \
-	    check_$*_parallelize= check-parallel-$*; \
-	fi
-
-check-parallel-% : site.exp
-	-@test -d plugin || mkdir plugin
-	-@test -d $(TESTSUITEDIR) || mkdir $(TESTSUITEDIR)
-	@test -d $(TESTSUITEDIR)/$(check_p_subdir) || mkdir $(TESTSUITEDIR)/$(check_p_subdir)
-	-$(if $(check_p_subno),@)(rootme=`${PWD_COMMAND}`; export rootme; \
-	srcdir=`cd ${srcdir}; ${PWD_COMMAND}` ; export srcdir ; \
-	if [ -n "$(check_p_subno)" ] \
-	   && [ -n "$$GCC_RUNTEST_PARALLELIZE_DIR" ] \
-	   && [ -f $(TESTSUITEDIR)/$(check_p_tool)-parallel/finished ]; then \
-	  rm -rf $(TESTSUITEDIR)/$(check_p_subdir); \
-	else \
-	  cd $(TESTSUITEDIR)/$(check_p_subdir); \
-	  rm -f tmp-site.exp; \
-	  sed '/set tmpdir/ s|testsuite$$|$(TESTSUITEDIR)/$(check_p_subdir)|' \
-		< ../../site.exp > tmp-site.exp; \
-	  $(SHELL) $${srcdir}/../move-if-change tmp-site.exp site.exp; \
-	  EXPECT=${EXPECT} ; export EXPECT ; \
-	  if [ -f $${rootme}/../expect/expect ] ; then  \
-	    TCL_LIBRARY=`cd .. ; cd $${srcdir}/../tcl/library ; ${PWD_COMMAND}` ; \
-	    export TCL_LIBRARY ; \
-	  fi ; \
-	  $(RUNTEST) --tool $(check_p_tool) $(RUNTESTFLAGS); \
-	  if [ -n "$$GCC_RUNTEST_PARALLELIZE_DIR" ] ; then \
-	    touch $${rootme}/$(TESTSUITEDIR)/$(check_p_tool)-parallel/finished; \
-	  fi ; \
-	fi )
-
-# QMTest targets
-
-# The path to qmtest.
-QMTEST_PATH=qmtest
-
-# The flags to pass to qmtest.
-QMTESTFLAGS=
-
-# The flags to pass to "qmtest run".
-QMTESTRUNFLAGS=-f none --result-stream dejagnu_stream.DejaGNUStream
-
-# The command to use to invoke qmtest.
-QMTEST=${QMTEST_PATH} ${QMTESTFLAGS}
-
-# The tests (or suites) to run.
-QMTEST_GPP_TESTS=g++
-
-# The subdirectory of the OBJDIR that will be used to store the QMTest
-# test database configuration and that will be used for temporary
-# scratch space during QMTest's execution.
-QMTEST_DIR=qmtestsuite
-
-# Create the QMTest database configuration.
-${QMTEST_DIR} stamp-qmtest:
-	${QMTEST} -D ${QMTEST_DIR} create-tdb \
-	    -c gcc_database.GCCDatabase \
-	    -a srcdir=`cd ${srcdir}/testsuite && ${PWD_COMMAND}` && \
-	    $(STAMP) stamp-qmtest
-
-# Create the QMTest context file.
-${QMTEST_DIR}/context: stamp-qmtest
-	rm -f $@
-	echo "CompilerTable.languages=c cplusplus" >> $@
-	echo "CompilerTable.c_kind=GCC" >> $@
-	echo "CompilerTable.c_path=${objdir}/xgcc" >> $@
-	echo "CompilerTable.c_options=-B${objdir}/" >> $@
-	echo "CompilerTable.cplusplus_kind=GCC" >> $@
-	echo "CompilerTable.cplusplus_path=${objdir}/xg++" >> $@
-	echo "CompilerTable.cplusplus_options=-B${objdir}/" >> $@
-	echo "DejaGNUTest.target=${target_noncanonical}" >> $@
-
-# Run the G++ testsuite using QMTest.
-qmtest-g++: ${QMTEST_DIR}/context
-	cd ${QMTEST_DIR} && ${QMTEST} run ${QMTESTRUNFLAGS} -C context \
-	   -o g++.qmr ${QMTEST_GPP_TESTS}
-
-# Use the QMTest GUI.
-qmtest-gui: ${QMTEST_DIR}/context
-	cd ${QMTEST_DIR} && ${QMTEST} gui -C context
-
-.PHONY: qmtest-g++
-
-# Run Paranoia on real.cc.
-
-paranoia.o: $(srcdir)/../contrib/paranoia.cc $(CONFIG_H) $(SYSTEM_H) $(TREE_H)
-	g++ -c $(ALL_CFLAGS) $(ALL_CPPFLAGS) $< $(OUTPUT_OPTION)
-
-paranoia: paranoia.o real.o $(LIBIBERTY)
-	g++ -o $@ paranoia.o real.o $(LIBIBERTY)
 
 # These exist for maintenance purposes.
 
@@ -4358,80 +3715,6 @@ TAGS: lang.tags
 	      --language=none --regex="/\(DEF_RTL_EXPR\|DEFTREECODE\|DEFGSCODE\|DEFTIMEVAR\|DEFPARAM\|DEFPARAMENUM5\)[ ]?(\([A-Za-z_0-9]+\)/\2/" rtl.def tree.def gimple.def timevar.def \
 		; \
 	$(ETAGS) --include TAGS.sub $$incs)
-
-# -----------------------------------------------------
-# Rules for generating translated message descriptions.
-# Disabled by autoconf if the tools are not available.
-# -----------------------------------------------------
-
-XGETTEXT = @XGETTEXT@
-GMSGFMT = @GMSGFMT@
-MSGMERGE = msgmerge
-CATALOGS = $(patsubst %,po/%,@CATALOGS@)
-
-.PHONY: build- install- build-po install-po update-po
-
-# Dummy rules to deal with dependencies produced by use of
-# "build-@POSUB@" and "install-@POSUB@" above, when NLS is disabled.
-build-: ; @true
-install-: ; @true
-
-build-po: $(CATALOGS)
-
-# This notation should be acceptable to all Make implementations used
-# by people who are interested in updating .po files.
-update-po: $(CATALOGS:.gmo=.pox)
-
-# N.B. We do not attempt to copy these into $(srcdir).  The snapshot
-# script does that.
-.po.gmo:
-	$(mkinstalldirs) po
-	$(GMSGFMT) --statistics -o $@ $<
-
-# The new .po has to be gone over by hand, so we deposit it into
-# build/po with a different extension.
-# If build/po/gcc.pot exists, use it (it was just created),
-# else use the one in srcdir.
-.po.pox:
-	$(mkinstalldirs) po
-	$(MSGMERGE) $< `if test -f po/gcc.pot; \
-			then echo po/gcc.pot; \
-			else echo $(srcdir)/po/gcc.pot; fi` -o $@
-
-# This rule has to look for .gmo modules in both srcdir and
-# the cwd, and has to check that we actually have a catalog
-# for each language, in case they weren't built or included
-# with the distribution.
-install-po:
-	$(mkinstalldirs) $(DESTDIR)$(datadir)
-	cats="$(CATALOGS)"; for cat in $$cats; do \
-	  lang=`basename $$cat | sed 's/\.gmo$$//'`; \
-	  if [ -f $$cat ]; then :; \
-	  elif [ -f $(srcdir)/$$cat ]; then cat=$(srcdir)/$$cat; \
-	  else continue; \
-	  fi; \
-	  dir=$(localedir)/$$lang/LC_MESSAGES; \
-	  echo $(mkinstalldirs) $(DESTDIR)$$dir; \
-	  $(mkinstalldirs) $(DESTDIR)$$dir || exit 1; \
-	  echo $(INSTALL_DATA) $$cat $(DESTDIR)$$dir/gcc.mo; \
-	  $(INSTALL_DATA) $$cat $(DESTDIR)$$dir/gcc.mo; \
-	done
-
-# Rule for regenerating the message template (gcc.pot).
-# Instead of forcing everyone to edit POTFILES.in, which proved impractical,
-# this rule has no dependencies and always regenerates gcc.pot.  This is
-# relatively harmless since the .po files do not directly depend on it.
-# Note that exgettext has an awk script embedded in it which requires a
-# fairly modern (POSIX-compliant) awk.
-# The .pot file is left in the build directory.
-gcc.pot: po/gcc.pot
-po/gcc.pot: force
-	$(mkinstalldirs) po
-	$(MAKE) srcextra
-	AWK=$(AWK) $(SHELL) $(srcdir)/po/exgettext \
-		$(XGETTEXT) gcc $(srcdir)
-
-#
 
 # Dependency information.
 
