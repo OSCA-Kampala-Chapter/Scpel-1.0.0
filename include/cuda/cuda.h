@@ -157,7 +157,8 @@ CUresult cuDriverGetVersion (int *);
 CUresult cuLaunchKernel (CUfunction, unsigned, unsigned, unsigned, unsigned,
 			 unsigned, unsigned, unsigned, CUstream, void **, void **);
 #define cuLinkAddData cuLinkAddData_v2
-CUresult cuLinkAddData (CUlinkState, CUjitInputType, void *, size_t, const char *, unsigned, CUjit_option *, void **);
+CUresult cuLinkAddData (CUlinkState, CUjitInputType, void *, size_t, const char *,
+			unsigned, CUjit_option *, void **);
 CUresult cuLinkComplete (CUlinkState, void **, size_t *);
 #define cuLinkCreate cuLinkCreate_v2
 CUresult cuLinkCreate (unsigned, CUjit_option *, void **, CUlinkState *);
