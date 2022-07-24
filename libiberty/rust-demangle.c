@@ -126,7 +126,7 @@ parse_integer_62 (struct rust_demangler *rdm)
     return 0;
 
   x = 0;
-  while (!eat (rdm, '_') && !rdm->errored)
+  while (!eat (rdm, '_'))
     {
       c = next (rdm);
       x *= 62;
@@ -1082,18 +1082,6 @@ demangle_path_maybe_open_generics (struct rust_demangler *rdm)
   if (rdm->errored)
     return open;
 
-  if (rdm->recursion != RUST_NO_RECURSION_LIMIT)
-    {
-      ++ rdm->recursion;
-      if (rdm->recursion > RUST_MAX_RECURSION_COUNT)
-	{
-	  /* FIXME: There ought to be a way to report
-	     that the recursion limit has been reached.  */
-	  rdm->errored = 1;
-	  goto end_of_func;
-	}
-    }
-
   if (eat (rdm, 'B'))
     {
       backref = parse_integer_62 (rdm);
@@ -1119,11 +1107,6 @@ demangle_path_maybe_open_generics (struct rust_demangler *rdm)
     }
   else
     demangle_path (rdm, 0);
-
- end_of_func:
-  if (rdm->recursion != RUST_NO_RECURSION_LIMIT)
-    -- rdm->recursion;
-
   return open;
 }
 
@@ -1165,15 +1148,6 @@ demangle_const (struct rust_demangler *rdm)
   if (rdm->errored)
     return;
 
-  if (rdm->recursion != RUST_NO_RECURSION_LIMIT)
-    {
-      ++ rdm->recursion;
-      if (rdm->recursion > RUST_MAX_RECURSION_COUNT)
-	/* FIXME: There ought to be a way to report
-	   that the recursion limit has been reached.  */
-	goto fail_return;
-    }
-
   if (eat (rdm, 'B'))
     {
       backref = parse_integer_62 (rdm);
@@ -1184,7 +1158,7 @@ demangle_const (struct rust_demangler *rdm)
           demangle_const (rdm);
           rdm->next = old_next;
         }
-      goto pass_return;
+      return;
     }
 
   ty_tag = next (rdm);
@@ -1193,7 +1167,7 @@ demangle_const (struct rust_demangler *rdm)
     /* Placeholder. */
     case 'p':
       PRINT ("_");
-      goto pass_return;
+      return;
 
     /* Unsigned integer types. */
     case 'h':
@@ -1226,21 +1200,18 @@ demangle_const (struct rust_demangler *rdm)
       break;
 
     default:
-      goto fail_return;
+      rdm->errored = 1;
+      return;
     }
 
-  if (!rdm->errored && rdm->verbose)
+  if (rdm->errored)
+    return;
+
+  if (rdm->verbose)
     {
       PRINT (": ");
       PRINT (basic_type (ty_tag));
     }
-  goto pass_return;
-
- fail_return:
-  rdm->errored = 1;
- pass_return:
-  if (rdm->recursion != RUST_NO_RECURSION_LIMIT)
-    -- rdm->recursion;
 }
 
 static void
