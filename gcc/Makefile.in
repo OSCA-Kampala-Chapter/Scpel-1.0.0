@@ -3371,7 +3371,7 @@ maintainer-clean:
 # Install the driver last so that the window when things are
 # broken is small.
 install: install-common $(INSTALL_HEADERS) \
-    install-cpp install-man install-info \
+    install-cpp \
     install-driver install-lto-wrapper install-gcc-ar
 
 ifeq ($(enable_plugin),yes)
