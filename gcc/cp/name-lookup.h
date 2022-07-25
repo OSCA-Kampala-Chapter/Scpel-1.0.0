@@ -1,29 +1,11 @@
 /* Declarations for -*- C++ -*- name lookup routines.
-   Copyright (C) 2003-2022 Free Software Foundation, Inc.
-   Contributed by Gabriel Dos Reis <gdr@integrable-solutions.net>
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/README) for Licencing info */
 
 #ifndef GCC_CP_NAME_LOOKUP_H
 #define GCC_CP_NAME_LOOKUP_H
 
 #include "c-family/c-common.h"
 
-
 /* The datatype used to implement C++ scope.  */
 struct cp_binding_level;
 

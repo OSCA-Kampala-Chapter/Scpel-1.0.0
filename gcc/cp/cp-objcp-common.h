@@ -1,22 +1,5 @@
 /* Language hooks common to C++ and ObjC++ front ends.
-   Copyright (C) 2004-2022 Free Software Foundation, Inc.
-   Contributed by Ziemowit Laski  <zlaski@apple.com>
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review $(srcdir/README) for Licencing info */
 
 #ifndef GCC_CP_OBJCP_COMMON
 #define GCC_CP_OBJCP_COMMON
@@ -24,8 +7,7 @@ along with GCC; see the file COPYING3.  If not see
 /* In cp/objcp-common.c, cp/cp-lang.cc and objcp/objcp-lang.cc.  */
 
 extern tree cp_get_debug_type (const_tree);
-extern tree objcp_tsubst_copy_and_build (tree, tree, tsubst_flags_t,
-					 tree, bool);
+extern tree objcp_tsubst_copy_and_build (tree, tree, tsubst_flags_t, tree, bool);
 
 extern int cp_decl_dwarf_attribute (const_tree, int);
 extern int cp_type_dwarf_attribute (const_tree, int);
@@ -35,13 +17,10 @@ extern tree cp_classtype_as_base (const_tree);
 extern tree cp_get_global_decls ();
 extern tree cp_pushdecl (tree);
 extern void cp_register_dumps (gcc::dump_manager *);
-extern bool cp_handle_option (size_t, const char *, HOST_WIDE_INT, int,
-			      location_t, const struct cl_option_handlers *);
+extern bool cp_handle_option (size_t, const char *, HOST_WIDE_INT, int, location_t, const struct cl_option_handlers *);
 extern tree cxx_make_type_hook			(tree_code);
-extern tree cxx_simulate_enum_decl (location_t, const char *,
-				    vec<string_int_pair> *);
-extern tree cxx_simulate_record_decl (location_t, const char *,
-				      array_slice<const tree>);
+extern tree cxx_simulate_enum_decl (location_t, const char *, vec<string_int_pair> *);
+extern tree cxx_simulate_record_decl (location_t, const char *, array_slice<const tree>);
 
 /* Lang hooks that are shared between C++ and ObjC++ are defined here.  Hooks
    specific to C++ or ObjC++ go in cp/cp-lang.cc and objcp/objcp-lang.cc,
