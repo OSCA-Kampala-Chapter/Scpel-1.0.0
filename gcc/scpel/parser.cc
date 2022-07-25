@@ -30,7 +30,6 @@
 #include "memmodel.h"
 #include "c-family/known-headers.h"
 
-
 /* The lexer.  */
 
 /* The cp_lexer_* routines mediate between the lexer proper (in libcpp

@@ -35,23 +35,22 @@ c++.serial = cc1plus$(exeext)
 # Tell GNU make to ignore these if they exist.
 .PHONY: c++
 
-CFLAGS-cp/g++spec.o += $(DRIVER_DEFINES)
+CFLAGS-scpel/g++spec.o += $(DRIVER_DEFINES)
 
-CFLAGS-cp/module.o += -DHOST_MACHINE=\"$(host)\" \
-	-DTARGET_MACHINE=\"$(target)\"
+CFLAGS-scpel/module.o += -DHOST_MACHINE=\"$(host)\" -DTARGET_MACHINE=\"$(target)\"
 
 # In non-release builds, use a date-related module version.
 ifneq ($(DEVPHASE_c),)
 # Some date's don't grok 'r', if so, simply use today's
 # date (don't bootstrap at midnight).
-MODULE_VERSION := $(shell date -r $(srcdir)/cp/module.cc '+%y%m%d-%H%M' \
+MODULE_VERSION := $(shell date -r $(srcdir)/scpel/module.cc '+%y%m%d-%H%M' \
   2>/dev/null || date '+%y%m%d-0000' 2>/dev/null || echo 0)
 
-CFLAGS-cp/module.o += -DMODULE_VERSION='($(subst -,,$(MODULE_VERSION))U)'
+CFLAGS-scpel/module.o += -DMODULE_VERSION='($(subst -,,$(MODULE_VERSION))U)'
 endif
 
 # Create the compiler driver for g++.
-GXX_OBJS = $(GCC_OBJS) cp/g++spec.o
+GXX_OBJS = $(GCC_OBJS) scpel/g++spec.o
 xg++$(exeext): $(GXX_OBJS) $(EXTRA_GCC_OBJS) libcommon-target.a $(LIBDEPS)
 	+$(LINKER) $(ALL_LINKERFLAGS) $(LDFLAGS) -o $@ \
 	  $(GXX_OBJS) $(EXTRA_GCC_OBJS) libcommon-target.a \
@@ -69,22 +68,22 @@ CXX_C_OBJS = attribs.o incpath.o \
 
 # Language-specific object files for C++ and Objective C++.
 CXX_AND_OBJCXX_OBJS = \
-	cp/call.o cp/class.o cp/constexpr.o cp/constraint.o \
-	cp/coroutines.o cp/cp-gimplify.o \
-	cp/cp-objcp-common.o cp/cp-ubsan.o \
-	cp/cvt.o cp/cxx-pretty-print.o \
-	cp/decl.o cp/decl2.o cp/dump.o \
-	cp/error.o cp/except.o cp/expr.o \
-	cp/friend.o cp/init.o \
-	cp/lambda.o cp/lex.o cp/logic.o \
-	cp/mangle.o cp/mapper-client.o cp/mapper-resolver.o \
-	cp/method.o cp/module.o \
-	cp/name-lookup.o cp/optimize.o \
-	cp/parser.o cp/pt.o cp/ptree.o \
-	cp/rtti.o \
-	cp/search.o cp/semantics.o \
-	cp/tree.o cp/typeck.o cp/typeck2.o \
-	cp/vtable-class-hierarchy.o $(CXX_C_OBJS)
+	scpel/call.o scpel/class.o scpel/constexpr.o scpel/constraint.o \
+	scpel/coroutines.o scpel/cp-gimplify.o \
+	scpel/cp-objcp-common.o scpel/cp-ubsan.o \
+	scpel/cvt.o scpel/cxx-pretty-print.o \
+	scpel/decl.o scpel/decl2.o scpel/dump.o \
+	scpel/error.o scpel/except.o scpel/expr.o \
+	scpel/friend.o scpel/init.o \
+	scpel/lambda.o scpel/lex.o scpel/logic.o \
+	scpel/mangle.o scpel/mapper-client.o scpel/mapper-resolver.o \
+	scpel/method.o scpel/module.o \
+	scpel/name-lookup.o scpel/optimize.o \
+	scpel/parser.o scpel/pt.o scpel/ptree.o \
+	scpel/rtti.o \
+	scpel/search.o scpel/semantics.o \
+	scpel/tree.o scpel/typeck.o scpel/typeck2.o \
+	scpel/vtable-class-hierarchy.o $(CXX_C_OBJS)
 
 ifeq ($(if $(wildcard ../stage_current),$(shell cat \
   ../stage_current)),stageautofeedback)
@@ -93,9 +92,9 @@ $(CXX_AND_OBJCXX_OBJS): cc1plus.fda
 endif
 
 # Language-specific object files for C++.
-CXX_OBJS = cp/cp-lang.o c-family/stub-objc.o $(CXX_AND_OBJCXX_OBJS)
+CXX_OBJS = scpel/cp-lang.o c-family/stub-objc.o $(CXX_AND_OBJCXX_OBJS)
 
-c++_OBJS = $(CXX_OBJS) cc1plus-checksum.o cp/g++spec.o
+c++_OBJS = $(CXX_OBJS) cc1plus-checksum.o scpel/g++spec.o
 
 # Use strict warnings for this front end.
 cp-warn = $(STRICT_WARN)
@@ -126,20 +125,19 @@ ifeq ($(ENABLE_MAINTAINER_RULES), true)
 # available when GCC is configured with --enable-maintainer-mode.  In
 # other cases, it is not available to avoid triggering rebuilds if a
 # user has the source checked out with unusual timestamps.
-$(srcdir)/cp/cfns.h: $(srcdir)/cp/cfns.gperf
+$(srcdir)/scpel/cfns.h: $(srcdir)/scpel/cfns.gperf
 else
 # We keep the rule so that you can still force a rebuild, even if you
 # didn't configure GCC with --enable-maintainer-mode, by manually
-# deleting the $(srcdir)/cp/cfns.h file.
-$(srcdir)/cp/cfns.h:
+# deleting the $(srcdir)/scpel/cfns.h file.
+$(srcdir)/scpel/cfns.h:
 endif
 	gperf -o -C -E -k '1-6,$$' -j1 -D -N 'libc_name_p' -L C++ \
-		$(srcdir)/cp/cfns.gperf --output-file $(srcdir)/cp/cfns.h
+		$(srcdir)/scpel/cfns.gperf --output-file $(srcdir)/scpel/cfns.h
 
 cc1plus.fda: ../stage1-gcc/cc1plus$(exeext) ../prev-gcc/$(PERF_DATA)
 	$(CREATE_GCOV) -binary ../stage1-gcc/cc1plus$(exeext) -gcov cc1plus.fda -profile ../prev-gcc/$(PERF_DATA) -gcov_version 1
 
-#
 # Build hooks:
 
 c++.all.cross: g++-cross$(exeext)
@@ -157,7 +155,7 @@ c++.srcinfo:
 c++.srcextra:
 
 c++.tags: force
-	cd $(srcdir)/cp; $(ETAGS) -o TAGS.sub *.cc *.h --language=none \
+	cd $(srcdir)/scpel; $(ETAGS) -o TAGS.sub *.cc *.h --language=none \
 	  --regex='/DEFTREECODE [(]\([A-Z_]+\)/\1/' cp-tree.def; \
 	$(ETAGS) --include TAGS.sub --include ../TAGS.sub
 
@@ -216,7 +214,7 @@ lang_checks += check-g++
 lang_checks_parallelized += check-g++
 # For description see the check_$lang_parallelize comment in gcc/Makefile.in.
 check_g++_parallelize = 10000
-#
+
 # Install hooks:
 # cc1plus is installed elsewhere as part of $(COMPILERS).
 
@@ -259,8 +257,8 @@ c++.install-plugin: installdirs
 # other files are flattened to a single directory.
 	headers="$(CP_PLUGIN_HEADERS)"; \
 	for file in $$headers; do \
-	  path=$(srcdir)/cp/$$file; \
-	  dest=$(plugin_includedir)/cp/$$file; \
+	  path=$(srcdir)/scpel/$$file; \
+	  dest=$(plugin_includedir)/scpel/$$file; \
 	  echo $(INSTALL_DATA) $$path $(DESTDIR)$$dest; \
 	  dir=`dirname $$dest`; \
 	  $(mkinstalldirs) $(DESTDIR)$$dir; \
@@ -276,7 +274,7 @@ c++.uninstall:
 	-rm -rf $(DESTDIR)$(bindir)/$(CXX_INSTALL_NAME)$(exeext)
 	-rm -rf $(DESTDIR)$(bindir)/$(GXX_INSTALL_NAME)$(exeext)
 	-rm -rf $(DESTDIR)$(man1dir)/$(GXX_INSTALL_NAME)$(man1ext)
-#
+
 # Clean hooks:
 # A lot of the ancillary files are deleted by the main makefile.
 # We just have to delete files specific to us.
@@ -288,25 +286,25 @@ c++.mostlyclean:
 	-rm -f xg++$(exeext) g++-cross$(exeext) cc1plus$(exeext) cc1plus.fda
 c++.clean:
 c++.distclean:
-	-rm -f cp/config.status cp/Makefile
+	-rm -f scpel/config.status scpel/Makefile
 c++.maintainer-clean:
-#
+
 # Stage hooks:
-# The main makefile has already created stage?/cp.
+# The main makefile has already created stage?/scpel.
 
 c++.stage1: stage1-start
-	-mv cp/*$(objext) stage1/cp
+	-mv scpel/*$(objext) stage1/scpel
 c++.stage2: stage2-start
-	-mv cp/*$(objext) stage2/cp
+	-mv scpel/*$(objext) stage2/scpel
 c++.stage3: stage3-start
-	-mv cp/*$(objext) stage3/cp
+	-mv scpel/*$(objext) stage3/scpel
 c++.stage4: stage4-start
-	-mv cp/*$(objext) stage4/cp
+	-mv scpel/*$(objext) stage4/scpel
 c++.stageprofile: stageprofile-start
-	-mv cp/*$(objext) stageprofile/cp
+	-mv scpel/*$(objext) stageprofile/scpel
 c++.stagefeedback: stagefeedback-start
-	-mv cp/*$(objext) stagefeedback/cp
+	-mv scpel/*$(objext) stagefeedback/scpel
 c++.autostageprofile: stageprofile-start
-	-mv cp/*$(objext) autostageprofile/cp
+	-mv scpel/*$(objext) autostageprofile/scpel
 c++.autostagefeedback: stagefeedback-start
-	-mv cp/*$(objext) autostagefeedback/cp
+	-mv scpel/*$(objext) autostagefeedback/scpel

@@ -1,7 +1,6 @@
 /* Prints out trees in human readable form.
    Please review $(srcdir/README) for Licencing info */
 
-
 #include "config.h"
 #include "system.h"
 #include "coretypes.h"

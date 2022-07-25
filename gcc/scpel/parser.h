@@ -5,7 +5,7 @@
 #define GCC_CP_PARSER_H
 
 #include "tree.h"
-#include "cp/cp-tree.h"
+#include "scpel/cp-tree.h"
 #include "c-family/c-pragma.h"
 
 /* A token's value and its associated deferred access checks and
