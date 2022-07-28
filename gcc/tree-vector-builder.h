@@ -1,21 +1,5 @@
 /* A class for building vector tree constants.
-   Copyright (C) 2017-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review: $(src-dir)/SPL-README for Licencing info. */
 
 #ifndef GCC_TREE_VECTOR_BUILDER_H
 #define GCC_TREE_VECTOR_BUILDER_H
@@ -24,8 +8,7 @@ along with GCC; see the file COPYING3.  If not see
 
 /* This class is used to build VECTOR_CSTs from a sequence of elements.
    See vector_builder for more details.  */
-class tree_vector_builder : public vector_builder<tree, tree,
-						  tree_vector_builder>
+class tree_vector_builder : public vector_builder<tree, tree, tree_vector_builder>
 {
   typedef vector_builder<tree, tree, tree_vector_builder> parent;
   friend class vector_builder<tree, tree, tree_vector_builder>;
