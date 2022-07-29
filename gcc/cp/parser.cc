@@ -2326,39 +2326,23 @@ static void cp_parser_using_directive
   (cp_parser *);
 static void cp_parser_using_enum
   (cp_parser *);
-static tree cp_parser_alias_declaration
-  (cp_parser *);
-static void cp_parser_asm_definition
-  (cp_parser *);
-static void cp_parser_linkage_specification
-  (cp_parser *, tree);
-static void cp_parser_static_assert
-  (cp_parser *, bool);
-static tree cp_parser_decltype
-  (cp_parser *);
-static tree cp_parser_decomposition_declaration
-  (cp_parser *, cp_decl_specifier_seq *, tree *, location_t *);
+static tree cp_parser_alias_declaration(cp_parser *);
+static void cp_parser_asm_definition(cp_parser *);
+static void cp_parser_linkage_specification(cp_parser *, tree);
+static void cp_parser_static_assert(cp_parser *, bool);
+static tree cp_parser_decltype(cp_parser *);
+static tree cp_parser_decomposition_declaration(cp_parser *, cp_decl_specifier_seq *, tree *, location_t *);
 
 /* Declarators [gram.dcl.decl] */
 
-static tree cp_parser_init_declarator
-  (cp_parser *, cp_parser_flags, cp_decl_specifier_seq *,
-   vec<deferred_access_check, va_gc> *, bool, bool, int, bool *, tree *,
-   location_t *, tree *);
-static cp_declarator *cp_parser_declarator
-  (cp_parser *, cp_parser_declarator_kind, cp_parser_flags, int *, bool *,
-   bool, bool, bool);
-static cp_declarator *cp_parser_direct_declarator
-  (cp_parser *, cp_parser_declarator_kind, cp_parser_flags, int *, bool, bool,
-   bool);
-static enum tree_code cp_parser_ptr_operator
-  (cp_parser *, tree *, cp_cv_quals *, tree *);
-static cp_cv_quals cp_parser_cv_qualifier_seq_opt
-  (cp_parser *);
-static cp_virt_specifiers cp_parser_virt_specifier_seq_opt
-  (cp_parser *);
-static cp_ref_qualifier cp_parser_ref_qualifier_opt
-  (cp_parser *);
+static tree cp_parser_init_declarator(cp_parser *, cp_parser_flags, cp_decl_specifier_seq *,
+   vec<deferred_access_check, va_gc> *, bool, bool, int, bool *, tree *, location_t *, tree *);
+static cp_declarator *cp_parser_declarator(cp_parser *, cp_parser_declarator_kind, cp_parser_flags, int *, bool *, bool, bool, bool);
+static cp_declarator *cp_parser_direct_declarator(cp_parser *, cp_parser_declarator_kind, cp_parser_flags, int *, bool, bool, bool);
+static enum tree_code cp_parser_ptr_operator(cp_parser *, tree *, cp_cv_quals *, tree *);
+static cp_cv_quals cp_parser_cv_qualifier_seq_opt(cp_parser *);
+static cp_virt_specifiers cp_parser_virt_specifier_seq_opt(cp_parser *);
+static cp_ref_qualifier cp_parser_ref_qualifier_opt(cp_parser *);
 static tree cp_parser_tx_qualifier_opt(cp_parser *);
 static tree cp_parser_late_return_type_opt(cp_parser *, cp_declarator *, tree &);
 static tree cp_parser_declarator_id(cp_parser *, bool);
