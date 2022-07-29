@@ -1,21 +1,5 @@
 /* Array bounds checking.
-   Copyright (C) 2005-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-GCC is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review: $(src-dir)/SPL-README for Licencing info. */
 
 #include "config.h"
 #include "system.h"
@@ -39,8 +23,7 @@ along with GCC; see the file COPYING3.  If not see
 #include "tree-cfg.h"
 #include "attribs.h"
 
-array_bounds_checker::array_bounds_checker (struct function *func,
-					    range_query *qry)
+array_bounds_checker::array_bounds_checker (struct function *func, range_query *qry)
   : fun (func), m_ptr_qry (qry)
 {
   /* No-op.  */

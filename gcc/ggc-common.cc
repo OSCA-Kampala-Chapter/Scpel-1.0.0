@@ -1,21 +1,5 @@
 /* Simple garbage collection for the GNU compiler.
-   Copyright (C) 1999-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review: $(src-dir)/SPL-README for Licencing info. */
 
 /* Generic garbage collection (GC) functions and data, not specific to
    any particular GC implementation.  */
@@ -41,8 +25,7 @@ struct traversal_state;
 
 static int compare_ptr_data (const void *, const void *);
 static void relocate_ptrs (void *, void *, void *);
-static void write_pch_globals (const struct ggc_root_tab * const *tab,
-			       struct traversal_state *state);
+static void write_pch_globals (const struct ggc_root_tab * const *tab, struct traversal_state *state);
 
 /* Maintain global roots that are preserved during GC.  */
 

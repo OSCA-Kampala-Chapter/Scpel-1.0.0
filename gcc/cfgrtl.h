@@ -1,21 +1,5 @@
 /* Define control flow data structures for the CFG.
-   Copyright (C) 2014-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review: $(src-dir)/SPL-README for Licencing info. */
 
 #ifndef GCC_CFGRTL_H
 #define GCC_CFGRTL_H
@@ -23,8 +7,7 @@ along with GCC; see the file COPYING3.  If not see
 extern void delete_insn (rtx_insn *);
 extern bool delete_insn_and_edges (rtx_insn *);
 extern void delete_insn_chain (rtx, rtx_insn *, bool);
-extern basic_block create_basic_block_structure (rtx_insn *, rtx_insn *,
-						 rtx_note *, basic_block);
+extern basic_block create_basic_block_structure (rtx_insn *, rtx_insn *, rtx_note *, basic_block);
 extern void compute_bb_for_insn (void);
 extern unsigned int free_bb_for_insn (void);
 extern rtx_insn *entry_of_function (void);

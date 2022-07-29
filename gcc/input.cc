@@ -1,21 +1,5 @@
 /* Data and functions related to line maps and input files.
-   Copyright (C) 2004-2022 Free Software Foundation, Inc.
-
-This file is part of GCC.
-
-GCC is free software; you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 3, or (at your option) any later
-version.
-
-GCC is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or
-FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-for more details.
-
-You should have received a copy of the GNU General Public License
-along with GCC; see the file COPYING3.  If not see
-<http://www.gnu.org/licenses/>.  */
+   Please review: $(src-dir)/SPL-README for Licencing info. */
 
 #include "config.h"
 #include "system.h"
@@ -36,8 +20,7 @@ static const char *default_charset_callback (const char *)
 }
 
 void
-file_cache::initialize_input_context (diagnostic_input_charset_callback ccb,
-				      bool should_skip_bom)
+file_cache::initialize_input_context (diagnostic_input_charset_callback ccb, bool should_skip_bom)
 {
   in_context.ccb = (ccb ? ccb : default_charset_callback);
   in_context.should_skip_bom = should_skip_bom;

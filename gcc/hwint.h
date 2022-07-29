@@ -1,7 +1,5 @@
 /* HOST_WIDE_INT definitions for the GNU compiler.
-   Copyright (C) 1998-2022 Free Software Foundation, Inc.
-
-   This file is part of GCC.
+   Please review: $(src-dir)/SPL-README for Licencing info.
 
    Provide definitions for macros which depend on HOST_BITS_PER_INT
    and HOST_BITS_PER_LONG.  */
